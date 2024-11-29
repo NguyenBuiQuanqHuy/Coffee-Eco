@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.MenuController">
    <bottom>
       <AnchorPane prefHeight="94.0" prefWidth="852.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,12 +23,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Menu">
+            <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyMenu" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Menu">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Nhân Viên">
+            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyNhanVien" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Nhân Viên">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -81,19 +81,19 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comBoLoai" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
-            <ComboBox fx:id="comBoMenu" layoutX="70.0" layoutY="105.0" prefHeight="26.0" prefWidth="244.0" />
+            <ComboBox fx:id="comboBoxLoai" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
+            <ComboBox fx:id="comboBoxMenu" layoutX="70.0" layoutY="105.0" prefHeight="26.0" prefWidth="244.0" />
             <Text fx:id="textGia" fill="#59b75b" layoutX="70.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="63.98137664794922">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="MinusButton" layoutX="238.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" text="-">
+            <Button fx:id="MinusButton" layoutX="238.0" layoutY="155.0" mnemonicParsing="false" onAction="#minusSoluong" prefHeight="26.0" prefWidth="26.0" text="-">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="PlusButton" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="18.0" text="+">
+            <Button fx:id="PlusButton" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" onAction="#plusSoluong" prefHeight="26.0" prefWidth="18.0" text="+">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -127,7 +127,7 @@
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handelPay" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
+            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePay" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
                <font>
                   <Font size="14.0" />
                </font>
