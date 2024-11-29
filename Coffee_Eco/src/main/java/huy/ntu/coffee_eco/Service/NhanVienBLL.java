@@ -1,6 +1,6 @@
 package huy.ntu.coffee_eco.Service;
 
-import Untils.ComonUntils;
+import huy.ntu.coffee_eco.Untils.ComonUntils;
 import huy.ntu.coffee_eco.Models.Entities.NhanVien;
 import huy.ntu.coffee_eco.Responsitories.NhanVienDAL;
 

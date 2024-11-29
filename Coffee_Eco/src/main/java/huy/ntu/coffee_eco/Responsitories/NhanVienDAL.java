@@ -1,6 +1,6 @@
 package huy.ntu.coffee_eco.Responsitories;
 
-import Untils.DSUntils;
+import huy.ntu.coffee_eco.Untils.DSUntils;
 import huy.ntu.coffee_eco.Models.Entities.NhanVien;
 
 import java.sql.Connection;

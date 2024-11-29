@@ -1,4 +1,4 @@
-package Untils;
+package huy.ntu.coffee_eco.Untils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

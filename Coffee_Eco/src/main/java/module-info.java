@@ -10,6 +10,6 @@ module huy.ntu.coffee_eco {
     exports huy.ntu.coffee_eco;
     exports huy.ntu.coffee_eco.Controller;
     opens huy.ntu.coffee_eco.Controller to javafx.fxml;
-    exports Untils;
-    opens Untils to javafx.fxml;
+    exports huy.ntu.coffee_eco.Untils;
+    opens huy.ntu.coffee_eco.Untils to javafx.fxml;
 }
