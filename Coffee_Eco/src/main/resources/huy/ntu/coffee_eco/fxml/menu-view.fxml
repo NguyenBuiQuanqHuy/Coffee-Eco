@@ -18,7 +18,7 @@
    <bottom>
       <AnchorPane prefHeight="94.0" prefWidth="852.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Thống Kê">
+            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="222.0" text="Thống Kê">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Thoát">
+            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Nhân Viên">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -101,10 +101,10 @@
             <TextField fx:id="txtSoluong" layoutX="266.0" layoutY="155.0" prefHeight="26.0" prefWidth="22.0" />
             <ImageView fx:id="imageSanpham" fitHeight="161.0" fitWidth="219.0" layoutX="22.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Menu/caphesua.png" />
+                  <Image url="@../images/caphesua.png" />
                </image>
             </ImageView>
-            <Button fx:id="themSPbutton" layoutX="215.0" layoutY="210.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Thêm">
+            <Button layoutX="215.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleAddSP" prefHeight="36.0" prefWidth="97.0" text="Thêm">
                <font>
                   <Font size="14.0" />
                </font>
@@ -121,23 +121,23 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
-            <TableView layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="501.0">
+            <TableView fx:id="tableViewDetail" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="501.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <Button layoutX="372.0" layoutY="300.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
+            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handelPay" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="14.0" layoutY="309.0" text="Thành tiền:">
+            <Label layoutX="55.0" layoutY="308.0" text="Thành tiền:">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Text fill="#59b75b" layoutX="105.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="110.87094116210938">
+            <Text fill="#59b75b" layoutX="135.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="110.87094116210938">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

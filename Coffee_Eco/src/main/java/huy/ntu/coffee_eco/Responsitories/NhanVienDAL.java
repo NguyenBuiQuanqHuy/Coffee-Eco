@@ -33,22 +33,22 @@ public class NhanVienDAL {
         return false;
     }
 
-//    // Phương thức đăng nhập (chỉ thêm người dùng vào bảng 'users')
-//    public boolean Login(String taikhoan, String matkhauHash) {
-//        Connection conn = null;
-//        PreparedStatement stmt = null;
-//        try {
-//            conn = DBConnection.DBConnect();
-//            // Câu lệnh INSERT không bao gồm id vì MySQL sẽ tự động tăng id
-//            String sql = "INSERT INTO users (TenTK, MatKhau) VALUES (?, ?)";
-//            stmt = conn.prepareStatement(sql);
-//            stmt.setString(1, taikhoan);
-//            stmt.setString(2, matkhauHash);
-//            int result = stmt.executeUpdate();
-//            return result > 0;  // Trả về true nếu thêm thành công
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+   // Phương thức đăng nhập (chỉ thêm người dùng vào bảng 'users')
+  public boolean Login(String taikhoan, String matkhauHash) {
+        Connection conn = null;
+       PreparedStatement stmt = null;
+        try {
+            conn = DSUntils.DBConnect();
+           // Câu lệnh INSERT không bao gồm id vì MySQL sẽ tự động tăng id
+            String sql = "INSERT INTO users (TenTK, MatKhau) VALUES (?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, taikhoan);
+            stmt.setString(2, matkhauHash);
+           int result = stmt.executeUpdate();
+            return result > 0;  // Trả về true nếu thêm thành công
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

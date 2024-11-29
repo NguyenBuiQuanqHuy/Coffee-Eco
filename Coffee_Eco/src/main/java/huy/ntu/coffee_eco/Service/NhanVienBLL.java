@@ -18,8 +18,8 @@ public class NhanVienBLL {
         return kq;
     }
     // Phương thức đăng nhập
-//    public boolean dangNhap(String tenTaiKhoan, String matkhau) {
-//        String matkhauHash = HashingPass.hashPassword(matkhau); // Mã hóa mật khẩu bằng MD5
-//        return nhanVienDAO.Login(tenTaiKhoan, matkhauHash);
-//    }
+    public boolean dangNhap(String tenTaiKhoan, String matkhau) {
+        String matkhauHash = ComonUntils.hashPassword(matkhau); // Mã hóa mật khẩu bằng MD5
+        return nhanVienDAO.Login(tenTaiKhoan, matkhauHash);
+    }
 }
