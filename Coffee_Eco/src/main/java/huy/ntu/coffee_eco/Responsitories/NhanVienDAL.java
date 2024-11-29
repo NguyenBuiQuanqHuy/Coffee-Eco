@@ -1,19 +1,19 @@
-package huy.ntu.coffee_eco.ThreeLayer;
+package huy.ntu.coffee_eco.Responsitories;
 
-import huy.ntu.coffee_eco.DBConnection.DBConnection;
+import Untils.DSUntils;
+import huy.ntu.coffee_eco.Models.Entities.NhanVien;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class NhanVienDAO {
+public class NhanVienDAL {
     // Phương thức thêm nhân viên vào cơ sở dữ liệu
     public boolean AddNhanVien(NhanVien nhanVien) {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-            conn = DBConnection.DBConnect();
+            conn = DSUntils.DBConnect();
             // Câu lệnh INSERT không bao gồm id vì MySQL sẽ tự động tăng id
             String sql = "INSERT INTO nhanvien (TenNV, DiaChi, GioiTinh, DienThoai, TenTK, MatKhau) VALUES (?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
@@ -24,7 +24,7 @@ public class NhanVienDAO {
             stmt.setString(5, nhanVien.getTaikhoan());
             stmt.setString(6, nhanVien.getMatkhau());
             int result = stmt.executeUpdate();
-            DBConnection.CloseConnect(conn);
+            DSUntils.CloseConnect(conn);
             return result>0;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

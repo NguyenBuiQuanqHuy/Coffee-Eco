@@ -1,16 +1,18 @@
-package huy.ntu.coffee_eco.ThreeLayer;
+package huy.ntu.coffee_eco.Service;
 
-import huy.ntu.coffee_eco.HashingPass;
+import Untils.ComonUntils;
+import huy.ntu.coffee_eco.Models.Entities.NhanVien;
+import huy.ntu.coffee_eco.Responsitories.NhanVienDAL;
 
 public class NhanVienBLL {
-    NhanVienDAO nhanVienDAO=new NhanVienDAO();
+    NhanVienDAL nhanVienDAO=new NhanVienDAL();
 
     public NhanVienBLL() {
         this.nhanVienDAO = nhanVienDAO;
     }
 
     public boolean themNV(NhanVien nv){
-        String matkhauHash = HashingPass.hashPassword(nv.getMatkhau());
+        String matkhauHash = ComonUntils.hashPassword(nv.getMatkhau());
        nv.setMatkhau(matkhauHash);
         boolean kq = nhanVienDAO.AddNhanVien(nv);
         return kq;

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <AnchorPane prefHeight="94.0" prefWidth="852.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Thống Kê">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Menu">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Thoát">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+   </bottom>
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="744.0" style="-fx-background-color: #73de88;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="358.0" layoutY="27.0" />
+            <Label layoutX="402.0" layoutY="17.0" text="Menu" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: #ccffd6;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="117.0" layoutY="14.0" text="Chon thực đơn">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="320.0" layoutX="10.0" layoutY="36.0" stroke="#00000033" strokeType="INSIDE" width="322.0" />
+            <Label layoutX="22.0" layoutY="50.0" text="Loại: ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="108.0" text="Menu:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="168.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="158.0" text="Giá:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="149.0" layoutY="158.0" text="Số lượng:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="comBoLoai" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
+            <ComboBox fx:id="comBoMenu" layoutX="70.0" layoutY="105.0" prefHeight="26.0" prefWidth="244.0" />
+            <Text fx:id="textGia" fill="#59b75b" layoutX="70.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="63.98137664794922">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="MinusButton" layoutX="238.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" text="-">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="PlusButton" layoutX="289.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="18.0" text="+">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="txtSoluong" layoutX="266.0" layoutY="155.0" prefHeight="26.0" prefWidth="22.0" />
+            <ImageView fx:id="imageSanpham" fitHeight="161.0" fitWidth="219.0" layoutX="22.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Menu/caphesua.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="themSPbutton" layoutX="215.0" layoutY="210.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Thêm">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: #ccffd6;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="200.0" layoutY="14.0" text="Chi tiết hóa đơn">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
+            <TableView layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="501.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="372.0" layoutY="300.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="309.0" text="Thành tiền:">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Text fill="#59b75b" layoutX="105.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="110.87094116210938">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

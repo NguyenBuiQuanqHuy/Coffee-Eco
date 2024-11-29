@@ -1,7 +1,7 @@
-package huy.ntu.coffee_eco;
+package huy.ntu.coffee_eco.Controller;
 
-import huy.ntu.coffee_eco.ThreeLayer.NhanVien;
-import huy.ntu.coffee_eco.ThreeLayer.NhanVienBLL;
+import huy.ntu.coffee_eco.Models.Entities.NhanVien;
+import huy.ntu.coffee_eco.Service.NhanVienBLL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

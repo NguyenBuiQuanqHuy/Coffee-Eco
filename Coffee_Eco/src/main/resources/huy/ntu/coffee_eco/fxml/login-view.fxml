@@ -12,13 +12,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.LoginController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="225.0" fitWidth="227.0" layoutX="1.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../Download/images-removebg-preview.png" />
+                  <Image url="@../../../../../../../../../../../Download/images-removebg-preview.png" />
                </image>
             </ImageView>
             <Label layoutX="37.0" layoutY="312.0">
@@ -58,11 +58,6 @@
                </font>
             </Button>
             <Line endX="0.999969482421875" endY="-58.60000228881836" layoutY="58.0" startX="0.9999542236328125" startY="340.5999755859375" stroke="#8e8e8e" />
-            <Label layoutX="70.0" layoutY="283.0" onMouseClicked="#RedirectSignUp" text="Chưa có tài khoản? Đăng ký" textFill="#3d93cc">
-               <font>
-                  <Font name="Times New Roman Italic" size="13.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </center>

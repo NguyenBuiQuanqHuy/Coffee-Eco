@@ -1,4 +1,4 @@
-package huy.ntu.coffee_eco.ThreeLayer;
+package huy.ntu.coffee_eco.Models.Entities;
 
 public class NhanVien {
     private int id;

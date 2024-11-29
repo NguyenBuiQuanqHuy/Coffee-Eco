@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="420.0" prefWidth="751.0" style="-fx-background-color: #b4fec2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.NhanVienController">
+<AnchorPane prefHeight="420.0" prefWidth="751.0" style="-fx-background-color: #b4fec2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
     <children>
         <Label layoutX="275.0" layoutY="14.0" prefHeight="40.0" prefWidth="209.0" text="QUẢN LÝ NHÂN VIÊN">
             <font>
