@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="420.0" prefWidth="751.0" style="-fx-background-color: #b4fec2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.NhanVienController">
+    <children>
+        <Label layoutX="275.0" layoutY="14.0" prefHeight="40.0" prefWidth="209.0" text="QUẢN LÝ NHÂN VIÊN">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+
+        <TableView fx:id="productTable" layoutX="257.0" layoutY="63.0" prefHeight="395.0" prefWidth="498.0" style="-fx-background-color: #F5F5DC;">
+            <columns>
+                <TableColumn prefWidth="148.0" text="Họ tên" />
+                <TableColumn prefWidth="128.79995727539062" text="Địa chỉ" />
+                <TableColumn prefWidth="97.60003662109375" text="Giới tính" />
+                <TableColumn prefWidth="124.79998779296875" text="Liên hệ" />
+            </columns>
+        </TableView>
+
+        <Button layoutX="29.0" layoutY="349.0" onAction="#AddButton" prefHeight="26.0" prefWidth="61.0" text="Thêm" />
+        <Button layoutX="180.0" layoutY="349.0" onAction="#DeleteButton" prefHeight="26.0" prefWidth="62.0" text="Xóa" />
+        <Button layoutX="105.0" layoutY="349.0" onAction="#EditButton" prefHeight="26.0" prefWidth="61.0" text="Sửa" />
+      <Label layoutX="36.0" layoutY="69.0" text="Họ tên:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="116.0" text="Điện thoại:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="19.0" layoutY="160.0" text="Giới tính:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="209.0" text="Địa chỉ:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="251.0" text="Tài khoản:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="298.0" text="Mật khẩu:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="RadiobuttonNam" layoutX="91.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="72.0" text="Nam">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="RadiobuttonNu" layoutX="180.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="55.0" text="Nữ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <TextField fx:id="txtHoten" layoutX="92.0" layoutY="65.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDienthoai" layoutX="92.0" layoutY="112.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDiachi" layoutX="92.0" layoutY="205.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTaikhoan" layoutX="90.0" layoutY="247.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtMatkhau" layoutX="92.0" layoutY="294.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtMaNV" layoutX="92.0" layoutY="34.0" prefHeight="27.0" prefWidth="156.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+    </children>
+</AnchorPane>
