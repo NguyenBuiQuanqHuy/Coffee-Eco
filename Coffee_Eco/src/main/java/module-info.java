@@ -12,4 +12,5 @@ module huy.ntu.coffee_eco {
     opens huy.ntu.coffee_eco.Controller to javafx.fxml;
     exports huy.ntu.coffee_eco.Untils;
     opens huy.ntu.coffee_eco.Untils to javafx.fxml;
+    opens huy.ntu.coffee_eco.Models.Entities to javafx.base;
 }

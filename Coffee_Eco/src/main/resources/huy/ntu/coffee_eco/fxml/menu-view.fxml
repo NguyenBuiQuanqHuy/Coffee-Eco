@@ -16,9 +16,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.MenuController">
    <bottom>
-      <AnchorPane prefHeight="94.0" prefWidth="852.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="222.0" text="Thống Kê">
+            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="227.0" text="Thống Kê">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -48,7 +48,7 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: #ccffd6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="117.0" layoutY="14.0" text="Chon thực đơn">
                <font>
@@ -81,7 +81,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBoxLoai" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
+            <ComboBox fx:id="comboBoxType" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
             <ComboBox fx:id="comboBoxMenu" layoutX="70.0" layoutY="105.0" prefHeight="26.0" prefWidth="244.0" />
             <Text fx:id="textGia" fill="#59b75b" layoutX="70.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="63.98137664794922">
                <font>
@@ -99,7 +99,7 @@
                </font>
             </Button>
             <TextField fx:id="txtSoluong" layoutX="266.0" layoutY="155.0" prefHeight="26.0" prefWidth="22.0" />
-            <ImageView fx:id="imageSanpham" fitHeight="161.0" fitWidth="219.0" layoutX="22.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageSanpham" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/caphesua.png" />
                </image>
@@ -113,7 +113,7 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: #ccffd6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="200.0" layoutY="14.0" text="Chi tiết hóa đơn">
                <font>
@@ -123,8 +123,10 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
             <TableView fx:id="tableViewDetail" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="501.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colType" prefWidth="150.40003061294556" text="Loại" />
+                <TableColumn fx:id="colMenu" minWidth="0.0" prefWidth="150.40005493164062" text="Tên" />
+                  <TableColumn fx:id="colQuatity" minWidth="0.0" prefWidth="83.20001220703125" text="Số lượng" />
+                  <TableColumn fx:id="colCost" prefWidth="114.4000183105469" text="Giá" />
               </columns>
             </TableView>
             <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePay" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">

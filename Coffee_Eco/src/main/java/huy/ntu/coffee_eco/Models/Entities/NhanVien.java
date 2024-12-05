@@ -1,19 +1,21 @@
 package huy.ntu.coffee_eco.Models.Entities;
 
 public class NhanVien {
-    private int id;
-    private String ten;
-    private String diachi;
-    private String gioitinh;
-    private String dienthoai;
-    private String taikhoan;
-    private String matkhau;
+    public int id;
+    public String ten;
+    public String diachi;
+    public String gioitinh;
+    public String dienthoai;
+    public String taikhoan;
+    public String matkhau;
+    public float luong;
 
-    public NhanVien(String ten, String diachi, String gioitinh, String dienthoai, String taikhoan, String matkhau) {
+    public NhanVien(String ten, String diachi, String gioitinh, String dienthoai, float luong, String taikhoan, String matkhau) {
         this.ten = ten;
         this.diachi = diachi;
         this.gioitinh = gioitinh;
         this.dienthoai = dienthoai;
+        this.luong = luong;
         this.taikhoan = taikhoan;
         this.matkhau = matkhau;
     }
@@ -59,6 +61,14 @@ public class NhanVien {
 
     public void setDienthoai(String dienthoai) {
         this.dienthoai = dienthoai;
+    }
+
+    public float getLuong() {
+        return luong;
+    }
+
+    public void setLuong(float luong) {
+        this.luong = luong;
     }
 
     public String getTaikhoan() {
