@@ -1,7 +1,6 @@
 package huy.ntu.coffee_eco.Controller;
 
 import huy.ntu.coffee_eco.Models.Entities.NhanVien;
-import huy.ntu.coffee_eco.Responsitories.NhanVienDAL;
 import huy.ntu.coffee_eco.Service.NhanVienBLL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class NhanVienController {
 
     @FXML
-    private TextField txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong;
+    private TextField txtMaNV,txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong;
 
     @FXML
     private RadioButton RadiobuttonNam, RadiobuttonNu;
@@ -21,7 +20,7 @@ public class NhanVienController {
     private TableView<NhanVien> tableNhanVien;
 
     @FXML
-    private TableColumn<NhanVien, String> colHoten, colDiachi, colGioitinh, colDienthoai;
+    private TableColumn<NhanVien, String> colMaNV,colHoten, colDiachi, colGioitinh, colDienthoai;
 
     @FXML
     private TableColumn<NhanVien, Float> colLuong;
@@ -40,6 +39,7 @@ public class NhanVienController {
 
         nhanVienList = FXCollections.observableArrayList();
 
+        colMaNV.setCellValueFactory(new PropertyValueFactory<>("maNV"));
         colHoten.setCellValueFactory(new PropertyValueFactory<>("ten"));
         colDiachi.setCellValueFactory(new PropertyValueFactory<>("diachi"));
         colGioitinh.setCellValueFactory(new PropertyValueFactory<>("gioitinh"));
@@ -48,6 +48,16 @@ public class NhanVienController {
 
         loadNhanVienData();
         tableNhanVien.setItems(nhanVienList);
+
+        tableNhanVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Khi có nhân viên được chọn, khóa ô nhập MaNV
+                txtMaNV.setEditable(false);
+            } else {
+                // Khi không có nhân viên được chọn, mở lại ô nhập MaNV
+                txtMaNV.setEditable(true);
+            }
+        });
 
     }
 
@@ -58,6 +68,7 @@ public class NhanVienController {
     @FXML
     public void AddButton() {
         // Kiểm tra các trường đầu vào
+        String maNV=txtMaNV.getText().trim();
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
@@ -75,7 +86,7 @@ public class NhanVienController {
         }
 
         // Kiểm tra xem các trường có bị bỏ trống không
-        if (ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
+        if (maNV.isEmpty()||ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
             alert.show();
             return;
@@ -94,11 +105,13 @@ public class NhanVienController {
         }
 
         // Tạo đối tượng NhanVien
-        NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
+        NhanVien nv = new NhanVien(maNV,ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
         boolean result = nhanVienBLL.themNV(nv);
         if (result) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Thêm nhân viên thành công", ButtonType.OK);
             alert.show();
+            nhanVienList.add(nv);
+            tableNhanVien.setItems(nhanVienList);
             tableNhanVien.refresh();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Thêm nhân viên thất bại", ButtonType.OK);
@@ -116,7 +129,6 @@ public class NhanVienController {
             return;
         }
 
-        // Lấy thông tin mới từ các trường nhập liệu
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
@@ -154,7 +166,7 @@ public class NhanVienController {
             nhanVienBLL.suaNV(selectedNhanVien);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Sửa nhân viên thành công", ButtonType.OK);
             alert.show();
-            tableNhanVien.refresh(); // Làm mới TableView
+            tableNhanVien.refresh();
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Sửa nhân viên thất bại", ButtonType.OK);
             alert.show();

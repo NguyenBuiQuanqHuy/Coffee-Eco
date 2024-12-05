@@ -14,15 +14,16 @@ public class NhanVienDAL {
         try {
             conn = DSUntils.DBConnect();
             // Câu lệnh INSERT không bao gồm id vì MySQL sẽ tự động tăng id
-            String sql = "INSERT INTO nhanvien (TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO nhanvien (ID,TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?,?, ?, ?, ?, ?, ?,?)";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nhanVien.getTen());
-            stmt.setString(2, nhanVien.getDiachi());
-            stmt.setString(3, nhanVien.getGioitinh());
-            stmt.setString(4, nhanVien.getDienthoai());
-            stmt.setFloat(5,nhanVien.getLuong());
-            stmt.setString(6, nhanVien.getTaikhoan());
-            stmt.setString(7, nhanVien.getMatkhau());
+            stmt.setString(1,nhanVien.getMaNV());
+            stmt.setString(2, nhanVien.getTen());
+            stmt.setString(3, nhanVien.getDiachi());
+            stmt.setString(4, nhanVien.getGioitinh());
+            stmt.setString(5, nhanVien.getDienthoai());
+            stmt.setFloat(6,nhanVien.getLuong());
+            stmt.setString(7, nhanVien.getTaikhoan());
+            stmt.setString(8, nhanVien.getMatkhau());
             int result = stmt.executeUpdate();
             DSUntils.CloseConnect(conn);
             return result>0;
@@ -60,6 +61,7 @@ public class NhanVienDAL {
             ResultSet resultSet=statement.executeQuery(query);
 
             while (resultSet.next()){
+                String maNV=resultSet.getString("ID");
                 String ten = resultSet.getString("TenNV");
                 String diachi = resultSet.getString("DiaChi");
                 String gioitinh = resultSet.getString("GioiTinh");
@@ -68,7 +70,7 @@ public class NhanVienDAL {
                 String tenTK = resultSet.getString("TenTK");
                 String matkhau = resultSet.getString("MatKhau");
 
-                NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
+                NhanVien nv = new NhanVien(maNV,ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
                 nhanVienList.add(nv);
             }
             DSUntils.CloseConnect(conn);
@@ -83,15 +85,16 @@ public class NhanVienDAL {
         try {
             Connection conn = DSUntils.DBConnect();
             conn.setAutoCommit(false);
-            String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE TenNV=?";
+            String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE ID=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, nv.getTen());
-            pstmt.setString(2, nv.getDiachi());
-            pstmt.setString(3, nv.getGioitinh());
-            pstmt.setString(4, nv.getDienthoai());
-            pstmt.setFloat(5, nv.getLuong());
-            pstmt.setString(6, nv.getTaikhoan());
-            pstmt.setString(7, nv.getMatkhau());
+            pstmt.setString(1,nv.getMaNV());
+            pstmt.setString(2, nv.getTen());
+            pstmt.setString(3, nv.getDiachi());
+            pstmt.setString(4, nv.getGioitinh());
+            pstmt.setString(5, nv.getDienthoai());
+            pstmt.setFloat(6, nv.getLuong());
+            pstmt.setString(7, nv.getTaikhoan());
+            pstmt.setString(8, nv.getMatkhau());
             pstmt.executeUpdate();
             conn.commit();
             conn.setAutoCommit(true);
@@ -105,9 +108,9 @@ public class NhanVienDAL {
         try {
             Connection conn = DSUntils.DBConnect();
             conn.setAutoCommit(false);
-            String query = "DELETE FROM nhanvien WHERE TenNV=?";
+            String query = "DELETE FROM nhanvien WHERE ID=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, nv.getTen());
+            pstmt.setString(1, nv.getMaNV());
             pstmt.executeUpdate();
             conn.commit();
             conn.setAutoCommit(true);

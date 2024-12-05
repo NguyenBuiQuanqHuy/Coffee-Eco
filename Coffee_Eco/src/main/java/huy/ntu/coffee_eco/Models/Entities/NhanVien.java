@@ -1,7 +1,7 @@
 package huy.ntu.coffee_eco.Models.Entities;
 
 public class NhanVien {
-    public int id;
+    public String maNV;
     public String ten;
     public String diachi;
     public String gioitinh;
@@ -10,7 +10,11 @@ public class NhanVien {
     public String matkhau;
     public float luong;
 
-    public NhanVien(String ten, String diachi, String gioitinh, String dienthoai, float luong, String taikhoan, String matkhau) {
+    public NhanVien() {
+    }
+
+    public NhanVien(String maNV, String ten, String diachi, String gioitinh, String dienthoai, float luong, String taikhoan, String matkhau) {
+        this.maNV = maNV;
         this.ten = ten;
         this.diachi = diachi;
         this.gioitinh = gioitinh;
@@ -20,15 +24,12 @@ public class NhanVien {
         this.matkhau = matkhau;
     }
 
-    public NhanVien() {
+    public String getMaNV() {
+        return maNV;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
     public String getTen() {
