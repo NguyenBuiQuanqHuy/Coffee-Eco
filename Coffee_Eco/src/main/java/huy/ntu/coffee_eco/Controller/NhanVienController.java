@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class NhanVienController {
 
@@ -29,7 +30,6 @@ public class NhanVienController {
     private ObservableList<NhanVien> nhanVienList;
 
     @FXML
-    // Tạo ToggleGroup trong mã
     private ToggleGroup ToggleGroupGioiTinh;
 
     public void initialize() {
@@ -49,16 +49,6 @@ public class NhanVienController {
         loadNhanVienData();
         tableNhanVien.setItems(nhanVienList);
 
-        tableNhanVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                // Khi có nhân viên được chọn, khóa ô nhập MaNV
-                txtMaNV.setEditable(false);
-            } else {
-                // Khi không có nhân viên được chọn, mở lại ô nhập MaNV
-                txtMaNV.setEditable(true);
-            }
-        });
-
     }
 
     private void loadNhanVienData() {
@@ -67,7 +57,6 @@ public class NhanVienController {
 
     @FXML
     public void AddButton() {
-        // Kiểm tra các trường đầu vào
         String maNV=txtMaNV.getText().trim();
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
@@ -76,7 +65,6 @@ public class NhanVienController {
         String matkhau = txtMatkhau.getText().trim();
         Float luong;
 
-        // Kiểm tra lương có đúng định dạng ko
         try {
             luong = Float.parseFloat(txtLuong.getText().trim());
         } catch (NumberFormatException e) {
@@ -85,14 +73,12 @@ public class NhanVienController {
             return;
         }
 
-        // Kiểm tra xem các trường có bị bỏ trống không
         if (maNV.isEmpty()||ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
             alert.show();
             return;
         }
 
-        // Kiểm tra giới tính
         String gioitinh = "";
         if (RadiobuttonNam.isSelected()) {
             gioitinh = "Nam";
@@ -104,7 +90,6 @@ public class NhanVienController {
             return;
         }
 
-        // Tạo đối tượng NhanVien
         NhanVien nv = new NhanVien(maNV,ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
         boolean result = nhanVienBLL.themNV(nv);
         if (result) {
@@ -113,6 +98,14 @@ public class NhanVienController {
             nhanVienList.add(nv);
             tableNhanVien.setItems(nhanVienList);
             tableNhanVien.refresh();
+            txtMaNV.clear();
+            txtHoten.clear();
+            txtDiachi.clear();
+            txtDienthoai.clear();
+            txtLuong.clear();
+            txtTaikhoan.clear();
+            txtMatkhau.clear();
+            ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Thêm nhân viên thất bại", ButtonType.OK);
             alert.show();
@@ -121,7 +114,6 @@ public class NhanVienController {
 
 
     public void EditButton() {
-        // Lấy nhân viên được chọn trong TableView
         NhanVien selectedNhanVien = tableNhanVien.getSelectionModel().getSelectedItem();
         if (selectedNhanVien == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn nhân viên để sửa!", ButtonType.OK);
@@ -187,15 +179,20 @@ public class NhanVienController {
 
         if (confirmAlert.getResult() == ButtonType.YES) {
             try {
-                nhanVienBLL.xoaNV(selectedNhanVien);
+                nhanVienBLL.xoaNV(selectedNhanVien.getMaNV());
                 nhanVienList.remove(selectedNhanVien);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Xóa nhân viên thành công", ButtonType.OK);
                 alert.show();
-                tableNhanVien.refresh(); // Làm mới TableView
+                tableNhanVien.refresh();
             } catch (RuntimeException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Xóa nhân viên thất bại", ButtonType.OK);
                 alert.show();
             }
         }
+    }
+
+    public void ExitButton(){
+        Stage stage = (Stage) txtLuong.getScene().getWindow();
+        stage.close();
     }
 }

@@ -26,8 +26,8 @@ public class NhanVienBLL {
     public void suaNV(NhanVien nv){
         nhanVienDAL.suaNV(nv);
     }
-    public void xoaNV(NhanVien nv) {
-        nhanVienDAL.xoaNV(nv);
+    public void xoaNV(String maNV) {
+        nhanVienDAL.xoaNV(maNV);
     }
 
     public boolean dangNhap(String tenTaiKhoan, String matkhau) {

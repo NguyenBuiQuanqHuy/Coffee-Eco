@@ -7,13 +7,11 @@ import java.sql.*;
 
 
 public class NhanVienDAL {
-    // Phương thức thêm nhân viên vào cơ sở dữ liệu
     public boolean AddNhanVien(NhanVien nhanVien) {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = DSUntils.DBConnect();
-            // Câu lệnh INSERT không bao gồm id vì MySQL sẽ tự động tăng id
             String sql = "INSERT INTO nhanvien (ID,TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?,?, ?, ?, ?, ?, ?,?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1,nhanVien.getMaNV());
@@ -34,7 +32,6 @@ public class NhanVienDAL {
         return false;
     }
 
-   // Phương thức đăng nhập (chỉ thêm người dùng vào bảng 'users')
   public boolean Login(String taikhoan, String matkhauHash) {
         Connection conn = null;
        PreparedStatement stmt = null;
@@ -104,16 +101,13 @@ public class NhanVienDAL {
         }
     }
 
-    public void xoaNV(NhanVien nv) {
+    public void xoaNV(String maNV) {
         try {
             Connection conn = DSUntils.DBConnect();
-            conn.setAutoCommit(false);
             String query = "DELETE FROM nhanvien WHERE ID=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, nv.getMaNV());
+            pstmt.setString(1, maNV);
             pstmt.executeUpdate();
-            conn.commit();
-            conn.setAutoCommit(true);
             DSUntils.CloseConnect(conn);
         } catch (Exception e) {
             e.printStackTrace();

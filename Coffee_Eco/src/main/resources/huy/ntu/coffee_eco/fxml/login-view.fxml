@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="225.0" fitWidth="227.0" layoutX="1.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../../Download/images-removebg-preview.png" />
+                  <Image url="@../images/eco_coffee.png" />
                </image>
             </ImageView>
             <Label layoutX="37.0" layoutY="312.0">
@@ -32,7 +32,7 @@
    <center>
       <AnchorPane prefHeight="407.0" prefWidth="332.0" style="-fx-background-color: #F5F5DC;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutY="94.0" prefHeight="24.0" prefWidth="292.0" text="Đăng Nhập" textAlignment="CENTER" textFill="#ffc04d">
+            <Label alignment="CENTER" layoutY="94.0" prefHeight="24.0" prefWidth="292.0" text="Đăng Nhập" textAlignment="CENTER" textFill="#ffbe4f">
                <font>
                   <Font name="Verdana Bold Italic" size="19.0" />
                </font>
@@ -52,7 +52,7 @@
             </Label>
             <TextField fx:id="txtUser" layoutX="99.0" layoutY="139.0" />
             <PasswordField fx:id="password" layoutX="99.0" layoutY="186.0" />
-            <Button layoutX="33.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fcfcfc">
+            <Button layoutX="33.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

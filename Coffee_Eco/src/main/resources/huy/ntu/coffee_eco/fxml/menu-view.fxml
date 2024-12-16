@@ -10,25 +10,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.MenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.PaymentController">
    <bottom>
-      <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="227.0" text="Thống Kê">
+            <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="227.0" style="-fx-background-color: #0BEFAA; -fx-border-color: #AFAFAF;" text="Thống Kê" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyMenu" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Menu">
+            <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyMenu" prefHeight="66.0" prefWidth="222.0" style="-fx-background-color: #0BEFAA; -fx-border-color: #AFAFAF;" text="Quản Lý Menu" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyNhanVien" prefHeight="66.0" prefWidth="222.0" text="Quản Lý Nhân Viên">
+            <Button layoutX="592.0" layoutY="14.0" mnemonicParsing="false" onAction="#QuanLyNhanVien" prefHeight="66.0" prefWidth="222.0" style="-fx-background-color: #0BEFAA; -fx-border-color: #AFAFAF;" text="Quản Lý Nhân Viên" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -36,26 +37,37 @@
          </children></AnchorPane>
    </bottom>
    <top>
-      <AnchorPane prefHeight="70.0" prefWidth="744.0" style="-fx-background-color: #73de88;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="70.0" prefWidth="744.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="358.0" layoutY="27.0" />
-            <Label layoutX="402.0" layoutY="17.0" text="Menu" textAlignment="CENTER">
+            <Label layoutX="402.0" layoutY="17.0" text="Menu" textAlignment="CENTER" textFill="#ff6a05">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Verdana Bold" size="24.0" />
                </font>
             </Label>
+            <Label layoutX="687.0" layoutY="-1.0" prefHeight="36.0" prefWidth="124.0" text="Tên người dùng" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="687.0" layoutY="29.0" onMouseClicked="#LogOut" prefHeight="36.0" prefWidth="124.0" text="Đăng xuất" textFill="#ff0909">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Line endX="752.0" layoutX="100.0" layoutY="72.0" startX="-100.0" />
          </children>
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="117.0" layoutY="14.0" text="Chon thực đơn">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="320.0" layoutX="10.0" layoutY="36.0" stroke="#00000033" strokeType="INSIDE" width="322.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="320.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
             <Label layoutX="22.0" layoutY="50.0" text="Loại: ">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -98,7 +110,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="txtSoluong" layoutX="266.0" layoutY="155.0" prefHeight="26.0" prefWidth="22.0" />
+            <TextField fx:id="txtSoluong" layoutX="266.0" layoutY="155.0" prefHeight="26.0" prefWidth="22.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></TextField>
             <ImageView fx:id="imageSanpham" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/caphesua.png" />
@@ -106,22 +121,22 @@
             </ImageView>
             <Button layoutX="215.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleAddSP" prefHeight="36.0" prefWidth="97.0" text="Thêm">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: #ccffc6;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="200.0" layoutY="14.0" text="Chi tiết hóa đơn">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
-            <TableView fx:id="tableViewDetail" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="501.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
+            <TableView fx:id="tableViewDetail" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="colType" prefWidth="150.40003061294556" text="Loại" />
                 <TableColumn fx:id="colMenu" minWidth="0.0" prefWidth="150.40005493164062" text="Tên" />
