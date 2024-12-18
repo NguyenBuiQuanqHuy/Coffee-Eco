@@ -30,9 +30,9 @@ public class NhanVienBLL {
         nhanVienDAL.xoaNV(maNV);
     }
 
-    public boolean dangNhap(String tenTaiKhoan, String matkhau) {
-        String matkhauHash = ComonUntils.hashPassword(matkhau);
-        return nhanVienDAL.Login(tenTaiKhoan, matkhauHash);
-    }
+//    public void dangNhap(String tenTaiKhoan, String matkhau) {
+//        String matkhauHash = ComonUntils.hashPassword(matkhau);
+//        nhanVienDAL.Login(tenTaiKhoan, matkhauHash);
+//    }
 
 }

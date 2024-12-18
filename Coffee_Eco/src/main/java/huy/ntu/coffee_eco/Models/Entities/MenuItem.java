@@ -2,16 +2,25 @@ package huy.ntu.coffee_eco.Models.Entities;
 
 public class MenuItem {
     private int id;
-    private String loaiHang;
+    private int loaiHang;
     private String tenHang;
     private float gia;
     private String hinhAnh;
+    private String tenLoaiHang;
 
-    public MenuItem(String loaiHang, String tenHang, float gia, String hinhAnh) {
+    public MenuItem(int loaiHang, String tenHang, float gia, String hinhAnh) {
         this.loaiHang = loaiHang;
         this.tenHang = tenHang;
         this.gia = gia;
         this.hinhAnh = hinhAnh;
+    }
+
+    public String getTenLoaiHang() {
+        return tenLoaiHang;
+    }
+
+    public void setTenLoaiHang(String tenLoaiHang) {
+        this.tenLoaiHang = tenLoaiHang;
     }
 
     public int getId() {
@@ -22,11 +31,11 @@ public class MenuItem {
         this.id = id;
     }
 
-    public String getLoaiHang() {
+    public int getLoaiHang() {
         return loaiHang;
     }
 
-    public void setLoaiHang(String loaiHang) {
+    public void setLoaiHang(int loaiHang) {
         this.loaiHang = loaiHang;
     }
 
@@ -52,5 +61,10 @@ public class MenuItem {
 
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    @Override
+    public String toString() {
+        return tenHang;
     }
 }

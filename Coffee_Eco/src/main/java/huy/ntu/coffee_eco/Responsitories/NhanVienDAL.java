@@ -12,7 +12,7 @@ public class NhanVienDAL {
         PreparedStatement stmt = null;
         try {
             conn = DSUntils.DBConnect();
-            String sql = "INSERT INTO nhanvien (ID,TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?,?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO nhanvien (MaNV,TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?,?, ?, ?, ?, ?, ?,?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1,nhanVien.getMaNV());
             stmt.setString(2, nhanVien.getTen());
@@ -32,23 +32,24 @@ public class NhanVienDAL {
         return false;
     }
 
-  public boolean Login(String taikhoan, String matkhauHash) {
-        Connection conn = null;
-       PreparedStatement stmt = null;
-        try {
-            conn = DSUntils.DBConnect();
-            String sql = "INSERT INTO users (TenTK, MatKhau) VALUES (?, ?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, taikhoan);
-            stmt.setString(2, matkhauHash);
-           int result = stmt.executeUpdate();
-            DSUntils.CloseConnect(conn);
-            return result > 0;
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+//  public void Login(String taikhoan, String matkhauHash) {
+//        Connection conn = null;
+//       PreparedStatement stmt = null;
+//      if (taikhoan == null || taikhoan.trim().isEmpty()) {
+//          return;
+//      }
+//        try {
+//            conn = DSUntils.DBConnect();
+//            String sql = "INSERT INTO user (TenTK, MatKhau) VALUES (?, ?)";
+//            stmt = conn.prepareStatement(sql);
+//            stmt.setString(1, taikhoan);
+//            stmt.setString(2, matkhauHash);
+//            stmt.executeUpdate();
+//            DSUntils.CloseConnect(conn);
+//        } catch (SQLException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void LoadNhanVien(ObservableList<NhanVien> nhanVienList){
         try {
@@ -58,7 +59,7 @@ public class NhanVienDAL {
             ResultSet resultSet=statement.executeQuery(query);
 
             while (resultSet.next()){
-                String maNV=resultSet.getString("ID");
+                String maNV=resultSet.getString("MaNV");
                 String ten = resultSet.getString("TenNV");
                 String diachi = resultSet.getString("DiaChi");
                 String gioitinh = resultSet.getString("GioiTinh");
@@ -82,7 +83,7 @@ public class NhanVienDAL {
         try {
             Connection conn = DSUntils.DBConnect();
             conn.setAutoCommit(false);
-            String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE ID=?";
+            String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE MaNV=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1,nv.getMaNV());
             pstmt.setString(2, nv.getTen());
@@ -104,7 +105,7 @@ public class NhanVienDAL {
     public void xoaNV(String maNV) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String query = "DELETE FROM nhanvien WHERE ID=?";
+            String query = "DELETE FROM nhanvien WHERE MaNV=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, maNV);
             pstmt.executeUpdate();

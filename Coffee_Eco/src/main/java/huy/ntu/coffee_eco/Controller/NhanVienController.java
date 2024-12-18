@@ -106,6 +106,7 @@ public class NhanVienController {
             txtTaikhoan.clear();
             txtMatkhau.clear();
             ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
+           // nhanVienBLL.dangNhap(tenTK,matkhau);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Thêm nhân viên thất bại", ButtonType.OK);
             alert.show();

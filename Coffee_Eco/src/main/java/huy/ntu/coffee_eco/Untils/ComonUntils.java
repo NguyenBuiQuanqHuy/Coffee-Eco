@@ -15,7 +15,6 @@ public class ComonUntils {
         }
     }
 
-    // Chuyển byte array sang chuỗi hex
     private static String bytesToHex(byte[] bytes) {
         StringBuilder hexString = new StringBuilder();
         for (byte b : bytes) {

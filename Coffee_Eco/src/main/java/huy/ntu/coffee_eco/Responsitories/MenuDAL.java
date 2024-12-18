@@ -10,20 +10,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MenuDAL {
-    private Map<String, Integer> loaiHangMap = new HashMap<>();
+    private Map<Integer,String> loaiHangMap = new HashMap<>();
     public void loadMenu(ObservableList<MenuItem> menuList) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String query = "SELECT m.MaHang, m.TenHang, l.TenLoaiHang, m.Gia, m.HinhAnh " +
+            String query = "SELECT m.MaSP,l.MaLoaiHang, m.TenSP, m.Gia, m.HinhAnh " +
                     "FROM menu m " +
                     "JOIN loaihang l ON m.LoaiHang = l.MaLoaiHang;";
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-
             while (resultSet.next()) {
-                int id = resultSet.getInt("MaHang");
-                String loaiHang = resultSet.getString("TenLoaiHang");
-                String tenHang = resultSet.getString("TenHang");
+                int id = resultSet.getInt("MaSP");
+                int loaiHang = resultSet.getInt("MaLoaiHang");
+                String tenHang = resultSet.getString("TenSP");
                 Float giaHang = resultSet.getFloat("Gia");
                 String hinh = resultSet.getString("HinhAnh");
 
@@ -50,8 +49,7 @@ public class MenuDAL {
                 int maLoaiHang = rs.getInt("MaLoaiHang");
                 String tenLoai = rs.getString("TenLoaiHang");
                 loaiHangList.add(new LoaiHang(maLoaiHang, tenLoai));
-                loaiHangMap.put(tenLoai, maLoaiHang);
-                loaiHangMap.put(tenLoai, maLoaiHang);
+                loaiHangMap.put(maLoaiHang,tenLoai);
             }
         DSUntils.CloseConnect(conn);
         } catch (SQLException e) {
@@ -63,11 +61,10 @@ public class MenuDAL {
 
     public void addMenu(MenuItem menuItem) {
         try {
-            int maLoaiHang = loaiHangMap.getOrDefault(menuItem.getLoaiHang(), -1);
             Connection conn = DSUntils.DBConnect();
-            String sql = "INSERT INTO menu (LoaiHang, TenHang, Gia, HinhAnh) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO menu (LoaiHang, TenSP, Gia, HinhAnh) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, maLoaiHang);
+            statement.setInt(1, menuItem.getLoaiHang());
             statement.setString(2, menuItem.getTenHang());
             statement.setFloat(3, menuItem.getGia());
             statement.setString(4, menuItem.getHinhAnh());
@@ -88,7 +85,7 @@ public class MenuDAL {
     public void deleteMenu(int menuId) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String sql = "DELETE FROM menu WHERE MaHang = ?";
+            String sql = "DELETE FROM menu WHERE MaSP = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, menuId);
             statement.executeUpdate();

@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,7 +110,7 @@ public class MenuController {
                 return;
             }
 
-            MenuItem menuItem = new MenuItem(loaiHang.getTenloaihang(), tenHang, gia, savedImagePath);
+            MenuItem menuItem = new MenuItem(loaiHang.getMaloaihang(), tenHang, gia, savedImagePath);
             menuList.add(menuItem);
             menuBLL.AddMenu(menuItem);
             tableViewMenu.refresh();
@@ -146,7 +147,8 @@ public class MenuController {
     }
 
     public void Thoat(){
-
+        Stage stage = (Stage) textFieldName.getScene().getWindow();
+        stage.close();
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {

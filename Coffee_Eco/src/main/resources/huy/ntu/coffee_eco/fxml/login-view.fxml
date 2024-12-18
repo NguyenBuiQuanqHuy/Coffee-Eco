@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.TaiKhoanController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
@@ -24,6 +24,11 @@
             <Label layoutX="37.0" layoutY="312.0">
                <font>
                   <Font name="Times New Roman" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="215.0" text="Nơi chữa lành tâm hồn" textFill="#b99d0f">
+               <font>
+                  <Font name="Verdana Bold Italic" size="14.0" />
                </font>
             </Label>
          </children>
@@ -50,9 +55,9 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="txtUser" layoutX="99.0" layoutY="139.0" />
-            <PasswordField fx:id="password" layoutX="99.0" layoutY="186.0" />
-            <Button layoutX="33.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
+            <TextField fx:id="textFieldTK" layoutX="99.0" layoutY="139.0" />
+            <PasswordField fx:id="matKhau" layoutX="99.0" layoutY="186.0" />
+            <Button layoutX="33.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleDangNhap" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
