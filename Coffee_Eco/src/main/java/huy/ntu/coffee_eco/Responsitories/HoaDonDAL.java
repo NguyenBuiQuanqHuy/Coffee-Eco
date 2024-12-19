@@ -17,7 +17,6 @@ public class HoaDonDAL {
             Connection conn = DSUntils.DBConnect();
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-            //loaiHangs.clear();
             while (resultSet.next()) {
                 int maloaihang = resultSet.getInt("MaLoaiHang");
                 String tenloaihang = resultSet.getString("TenLoaiHang");
@@ -38,17 +37,16 @@ public class HoaDonDAL {
             PreparedStatement statement= conn.prepareStatement(query);
             statement.setInt(1,maLoaiHang);
             ResultSet resultSet=statement.executeQuery();
-            //menuItems.clear();
             while (resultSet.next()) {
                 int id = resultSet.getInt("MaSP");
                 String tenHang = resultSet.getString("TenSP");
                 float gia = resultSet.getFloat("Gia");
                 String hinhAnh = resultSet.getString("HinhAnh");
-
                 MenuItem item = new MenuItem(maLoaiHang, tenHang, gia, hinhAnh);
                 item.setId(id);
                 menuItems.add(item);
             }
+            DSUntils.CloseConnect(conn);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

@@ -26,7 +26,7 @@ public class NhanVienBLL {
     public void suaNV(NhanVien nv){
         nhanVienDAL.suaNV(nv);
     }
-    public void xoaNV(String maNV) {
+    public void xoaNV(int maNV) {
         nhanVienDAL.xoaNV(maNV);
     }
 

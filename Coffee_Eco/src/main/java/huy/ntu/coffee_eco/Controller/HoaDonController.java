@@ -1,6 +1,7 @@
 package huy.ntu.coffee_eco.Controller;
 
 import huy.ntu.coffee_eco.HelloApplication;
+import huy.ntu.coffee_eco.Models.Entities.ChiTietHoaDon;
 import huy.ntu.coffee_eco.Models.Entities.LoaiHang;
 import huy.ntu.coffee_eco.Models.Entities.MenuItem;
 import huy.ntu.coffee_eco.Service.HoaDonBLL;
@@ -15,11 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.StringConverter;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class HoaDonController {
     @FXML
@@ -36,10 +34,12 @@ public class HoaDonController {
     ImageView imageSP;
 
     HoaDonBLL hoaDonBLL=new HoaDonBLL();
+    private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
 
     public void initialize() {
+        textFieldSoluong.setDisable(true);
         ObservableList<LoaiHang> loaiHangs = FXCollections.observableArrayList();
-        hoaDonBLL.LoadLoaiHang(loaiHangs); // Lấy dữ liệu từ BLL
+        hoaDonBLL.LoadLoaiHang(loaiHangs); 
         comboBoxLoai.setItems(loaiHangs);
         comboBoxLoai.setOnAction(event -> {
             LoaiHang selectedLoaiHang = comboBoxLoai.getValue();
@@ -54,10 +54,22 @@ public class HoaDonController {
             MenuItem selectedMenuItem = comboBoxMenu.getValue();
             if (selectedMenuItem != null) {
                 textGia.setText(String.format("%,.0f", selectedMenuItem.getGia()));
+                textFieldSoluong.setText("1");
                 String imagePath = selectedMenuItem.getHinhAnh();
                 String imagePathInResources = "/huy/ntu/coffee_eco/images/" + imagePath;
                 Image image = new Image(getClass().getResourceAsStream(imagePathInResources));
                 imageSP.setImage(image);
+                textFieldSoluong.setDisable(false);
+            }
+        });
+
+        textFieldSoluong.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                if (!newValue.isEmpty()) {
+                    updateTotalPrice();
+                }
+            } catch (NumberFormatException e) {
+                textFieldSoluong.setText(oldValue);
             }
         });
     }
@@ -82,16 +94,38 @@ public class HoaDonController {
         }
     }
 
-    public void handleThemSP(){
+    public void handleThemSP() {
+        MenuItem selectedMenuItem = comboBoxMenu.getValue();
+        int maLoaiHang = comboBoxLoai.getValue().getMaloaihang();
+        int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
+        double thanhTien = Double.parseDouble(textGia.getText().trim());
 
+        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0,maLoaiHang, selectedMenuItem.getId(), soLuong, thanhTien);
+        chiTietHoaDons.add(chiTietHoaDon);
+
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thêm món thành công");
+        alert.setHeaderText(null);
+        alert.setContentText("Món đã được thêm vào hóa đơn!");
+        alert.showAndWait();
     }
 
-    public void minusSoluong(){
 
+    public void minusSoluong(){
+        int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
+        if (soLuong > 1) {
+            soLuong -= 1;
+            textFieldSoluong.setText(String.valueOf(soLuong));
+            updateTotalPrice();
+        }
     }
 
     public void plusSoluong(){
-
+        int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
+        soLuong += 1;
+        textFieldSoluong.setText(String.valueOf(soLuong));
+        updateTotalPrice();
     }
 
     public void handleThanhToan(){
@@ -108,5 +142,14 @@ public class HoaDonController {
 
     public void QuanLyNhanVien(){
 
+    }
+
+    private void updateTotalPrice() {
+        MenuItem menuItem=comboBoxMenu.getValue();
+        float gia = menuItem.getGia();
+        int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
+        float totalPrice = gia * soLuong;
+        String rounded=String.format("%,.0f",totalPrice);
+        textGia.setText(String.valueOf(rounded));
     }
 }

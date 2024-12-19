@@ -9,10 +9,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.text.DecimalFormat;
+
 public class NhanVienController {
 
     @FXML
-    private TextField txtMaNV,txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong;
+    private TextField txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong;
 
     @FXML
     private RadioButton RadiobuttonNam, RadiobuttonNu;
@@ -21,7 +23,7 @@ public class NhanVienController {
     private TableView<NhanVien> tableNhanVien;
 
     @FXML
-    private TableColumn<NhanVien, String> colMaNV,colHoten, colDiachi, colGioitinh, colDienthoai;
+    private TableColumn<NhanVien, String> colHoten, colDiachi, colGioitinh, colDienthoai;
 
     @FXML
     private TableColumn<NhanVien, Float> colLuong;
@@ -38,13 +40,24 @@ public class NhanVienController {
         RadiobuttonNu.setToggleGroup(ToggleGroupGioiTinh);
 
         nhanVienList = FXCollections.observableArrayList();
-
-        colMaNV.setCellValueFactory(new PropertyValueFactory<>("maNV"));
         colHoten.setCellValueFactory(new PropertyValueFactory<>("ten"));
         colDiachi.setCellValueFactory(new PropertyValueFactory<>("diachi"));
         colGioitinh.setCellValueFactory(new PropertyValueFactory<>("gioitinh"));
         colDienthoai.setCellValueFactory(new PropertyValueFactory<>("dienthoai"));
         colLuong.setCellValueFactory(new PropertyValueFactory<>("luong"));
+        colLuong.setCellFactory(column -> new TableCell<>() {
+            private final DecimalFormat format = new DecimalFormat("#,###.###");
+
+            @Override
+            protected void updateItem(Float gia, boolean empty) {
+                super.updateItem(gia, empty);
+                if (empty || gia == null) {
+                    setText(null);
+                } else {
+                    setText(format.format(gia));
+                }
+            }
+        });
 
         loadNhanVienData();
         tableNhanVien.setItems(nhanVienList);
@@ -57,13 +70,19 @@ public class NhanVienController {
 
     @FXML
     public void AddButton() {
-        String maNV=txtMaNV.getText().trim();
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
         String tenTK = txtTaikhoan.getText().trim();
         String matkhau = txtMatkhau.getText().trim();
         Float luong;
+
+
+        if (ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
+            alert.show();
+            return;
+        }
 
         try {
             luong = Float.parseFloat(txtLuong.getText().trim());
@@ -73,11 +92,7 @@ public class NhanVienController {
             return;
         }
 
-        if (maNV.isEmpty()||ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
-            alert.show();
-            return;
-        }
+
 
         String gioitinh = "";
         if (RadiobuttonNam.isSelected()) {
@@ -90,7 +105,14 @@ public class NhanVienController {
             return;
         }
 
-        NhanVien nv = new NhanVien(maNV,ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
+        boolean taiKhoanTonTai = nhanVienList.stream().anyMatch(nv -> nv.getTaikhoan().equalsIgnoreCase(tenTK));
+        if (taiKhoanTonTai) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Tên tài khoản đã tồn tại, vui lòng chọn tài khoản khác!", ButtonType.OK);
+            alert.show();
+            return;
+        }
+
+        NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
         boolean result = nhanVienBLL.themNV(nv);
         if (result) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Thêm nhân viên thành công", ButtonType.OK);
@@ -98,7 +120,6 @@ public class NhanVienController {
             nhanVienList.add(nv);
             tableNhanVien.setItems(nhanVienList);
             tableNhanVien.refresh();
-            txtMaNV.clear();
             txtHoten.clear();
             txtDiachi.clear();
             txtDienthoai.clear();
@@ -106,7 +127,6 @@ public class NhanVienController {
             txtTaikhoan.clear();
             txtMatkhau.clear();
             ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
-           // nhanVienBLL.dangNhap(tenTK,matkhau);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Thêm nhân viên thất bại", ButtonType.OK);
             alert.show();

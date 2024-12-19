@@ -12,17 +12,22 @@ public class NhanVienDAL {
         PreparedStatement stmt = null;
         try {
             conn = DSUntils.DBConnect();
-            String sql = "INSERT INTO nhanvien (MaNV,TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?,?, ?, ?, ?, ?, ?,?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1,nhanVien.getMaNV());
-            stmt.setString(2, nhanVien.getTen());
-            stmt.setString(3, nhanVien.getDiachi());
-            stmt.setString(4, nhanVien.getGioitinh());
-            stmt.setString(5, nhanVien.getDienthoai());
-            stmt.setFloat(6,nhanVien.getLuong());
-            stmt.setString(7, nhanVien.getTaikhoan());
-            stmt.setString(8, nhanVien.getMatkhau());
+            String sql = "INSERT INTO nhanvien (TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?, ?, ?, ?, ?, ?,?)";
+            stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, nhanVien.getTen());
+            stmt.setString(2, nhanVien.getDiachi());
+            stmt.setString(3, nhanVien.getGioitinh());
+            stmt.setString(4, nhanVien.getDienthoai());
+            stmt.setFloat(5,nhanVien.getLuong());
+            stmt.setString(6, nhanVien.getTaikhoan());
+            stmt.setString(7, nhanVien.getMatkhau());
             int result = stmt.executeUpdate();
+
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            if (generatedKeys != null && generatedKeys.next()) {
+                int generatedId = generatedKeys.getInt(1);
+                nhanVien.setMaNV(generatedId);
+            }
             DSUntils.CloseConnect(conn);
             return result>0;
         } catch (SQLException | ClassNotFoundException e) {
@@ -59,7 +64,6 @@ public class NhanVienDAL {
             ResultSet resultSet=statement.executeQuery(query);
 
             while (resultSet.next()){
-                String maNV=resultSet.getString("MaNV");
                 String ten = resultSet.getString("TenNV");
                 String diachi = resultSet.getString("DiaChi");
                 String gioitinh = resultSet.getString("GioiTinh");
@@ -68,7 +72,7 @@ public class NhanVienDAL {
                 String tenTK = resultSet.getString("TenTK");
                 String matkhau = resultSet.getString("MatKhau");
 
-                NhanVien nv = new NhanVien(maNV,ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
+                NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
                 nhanVienList.add(nv);
             }
             DSUntils.CloseConnect(conn);
@@ -85,7 +89,6 @@ public class NhanVienDAL {
             conn.setAutoCommit(false);
             String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE MaNV=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1,nv.getMaNV());
             pstmt.setString(2, nv.getTen());
             pstmt.setString(3, nv.getDiachi());
             pstmt.setString(4, nv.getGioitinh());
@@ -102,12 +105,12 @@ public class NhanVienDAL {
         }
     }
 
-    public void xoaNV(String maNV) {
+    public void xoaNV(int maNV) {
         try {
             Connection conn = DSUntils.DBConnect();
             String query = "DELETE FROM nhanvien WHERE MaNV=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, maNV);
+            pstmt.setInt(1, maNV);
             pstmt.executeUpdate();
             DSUntils.CloseConnect(conn);
         } catch (Exception e) {
