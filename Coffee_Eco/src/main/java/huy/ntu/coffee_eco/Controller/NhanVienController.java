@@ -1,14 +1,19 @@
 package huy.ntu.coffee_eco.Controller;
 
+import huy.ntu.coffee_eco.HelloApplication;
 import huy.ntu.coffee_eco.Models.Entities.NhanVien;
 import huy.ntu.coffee_eco.Service.NhanVienBLL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class NhanVienController {
@@ -212,8 +217,14 @@ public class NhanVienController {
         }
     }
 
-    public void ExitButton(){
-        Stage stage = (Stage) txtLuong.getScene().getWindow();
-        stage.close();
+    public void ExitButton() throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
+        Scene loginScene = new Scene(loader.load());
+        Stage currentStage = (Stage) txtTaikhoan.getScene().getWindow();
+        Stage newStage = new Stage();
+        newStage.setScene(loginScene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        currentStage.close();
+        newStage.show();
     }
 }

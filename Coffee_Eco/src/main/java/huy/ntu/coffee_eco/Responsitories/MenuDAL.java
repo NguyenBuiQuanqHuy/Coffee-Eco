@@ -6,18 +6,15 @@ import huy.ntu.coffee_eco.Untils.DSUntils;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MenuDAL {
-    private Map<Integer,String> loaiHangMap = new HashMap<>();
     public void loadMenu(ObservableList<MenuItem> menuList) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String query = "SELECT m.MaSP,l.MaLoaiHang, m.TenSP, m.Gia, m.HinhAnh " +
+            String query = "SELECT m.MaSP,l.MaLoaiHang, l.TenLoaiHang, m.TenSP, m.Gia, m.HinhAnh " +
                     "FROM menu m " +
                     "JOIN loaihang l ON m.LoaiHang = l.MaLoaiHang;";
-            Statement statement = conn.createStatement();
+            PreparedStatement statement= conn.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 int id = resultSet.getInt("MaSP");
@@ -38,6 +35,25 @@ public class MenuDAL {
         }
     }
 
+    public String getTenLoaiHang(int maLoaiHang) {
+        String tenLoaiHang = "Không xác định";
+        try {
+            Connection conn = DSUntils.DBConnect();
+            String query = "SELECT TenLoaiHang FROM loaihang WHERE MaLoaiHang = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, maLoaiHang);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                tenLoaiHang = resultSet.getString("TenLoaiHang");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return tenLoaiHang;
+    }
+
+
+
     public void loadLoaiHang(ObservableList<LoaiHang> loaiHangList){
         try {
             Connection conn = DSUntils.DBConnect();
@@ -49,7 +65,6 @@ public class MenuDAL {
                 int maLoaiHang = rs.getInt("MaLoaiHang");
                 String tenLoai = rs.getString("TenLoaiHang");
                 loaiHangList.add(new LoaiHang(maLoaiHang, tenLoai));
-                loaiHangMap.put(maLoaiHang,tenLoai);
             }
         DSUntils.CloseConnect(conn);
         } catch (SQLException e) {

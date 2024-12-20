@@ -6,29 +6,14 @@ import java.util.List;
 
 public class HoaDon {
     int maHD;
-    String MaNV;
+    int MaNV;
     Date ngaylap;
     Double thanhtien;
 
-    List<ChiTietHoaDon> cthd=new ArrayList<>();
-
-    public HoaDon(String maNV, Date ngaylap, Double thanhtien) {
+    public HoaDon(int maNV, Date ngaylap, Double thanhtien) {
         MaNV = maNV;
         this.ngaylap = ngaylap;
         this.thanhtien = thanhtien;
-    }
-
-
-    public List<ChiTietHoaDon> getCthd() {
-        return cthd;
-    }
-
-    public void setCthd(List<ChiTietHoaDon> cthd) {
-        this.cthd = cthd;
-    }
-
-    public void addChiTietHoaDon(ChiTietHoaDon chiTiet) {
-        this.cthd.add(chiTiet);
     }
 
     public int getMaHD() {
@@ -39,11 +24,11 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public String getMaNV() {
+    public int getMaNV() {
         return MaNV;
     }
 
-    public void setMaNV(String maNV) {
+    public void setMaNV(int maNV) {
         MaNV = maNV;
     }
 

@@ -3,8 +3,17 @@ package huy.ntu.coffee_eco.Models.Entities;
 public class TaiKhoan {
     int id;
     String tenTK,matkhau;
+    NhanVien nhanVien;
 
     public TaiKhoan() {
+    }
+
+    public NhanVien getNhanVien() {
+        return nhanVien;
+    }
+
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
     }
 
     public TaiKhoan(String tenTK, String matkhau) {

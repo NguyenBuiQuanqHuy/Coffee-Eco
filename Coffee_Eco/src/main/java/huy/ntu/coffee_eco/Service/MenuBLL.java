@@ -14,6 +14,10 @@ public class MenuBLL {
     public void loadLoaiHang(ObservableList<LoaiHang> loaiHangList){
         menuDAL.loadLoaiHang(loaiHangList);
     }
+
+    public String getTenLoaiHang(int maloaihang){
+        return menuDAL.getTenLoaiHang(maloaihang);
+    }
     public void AddMenu(MenuItem menuItem){
         menuDAL.addMenu(menuItem);
     }

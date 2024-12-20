@@ -1,6 +1,7 @@
 package huy.ntu.coffee_eco.Controller;
 
 import huy.ntu.coffee_eco.HelloApplication;
+import huy.ntu.coffee_eco.Models.Entities.CurrentUser;
 import huy.ntu.coffee_eco.Models.Entities.TaiKhoan;
 import huy.ntu.coffee_eco.Service.TaiKhoanBLL;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ public class TaiKhoanController {
         boolean isSuccess = taiKhoanBLL.DangNhap(taiKhoan);
             if (isSuccess) {
                 showAlert("Đăng nhập thành công", Alert.AlertType.INFORMATION);
+                CurrentUser.setCurrentUser(taiKhoan);
                 DangNhapThanhCong();
             } else {
                 showAlert("Sai tài khoản hoặc mật khẩu", Alert.AlertType.ERROR);

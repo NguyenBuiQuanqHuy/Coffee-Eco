@@ -120,7 +120,7 @@
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="531.0" layoutY="27.0" text="Danh sách nhân viên">
+            <Label layoutX="441.0" layoutY="27.0" text="Danh sách nhân viên">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font>

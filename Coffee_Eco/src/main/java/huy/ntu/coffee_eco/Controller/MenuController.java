@@ -1,17 +1,21 @@
 package huy.ntu.coffee_eco.Controller;
 
+import huy.ntu.coffee_eco.HelloApplication;
 import huy.ntu.coffee_eco.Models.Entities.LoaiHang;
 import huy.ntu.coffee_eco.Service.MenuBLL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import huy.ntu.coffee_eco.Models.Entities.MenuItem;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +33,7 @@ public class MenuController {
     @FXML
     TableView<MenuItem> tableViewMenu;
     @FXML
-    TableColumn<MenuItem,String> colLoaiSP;
+    TableColumn<MenuItem,Integer> colLoaiSP;
     @FXML
     TableColumn<MenuItem,Float> colGiaSP;
     @FXML
@@ -50,6 +54,20 @@ public class MenuController {
 
         colTenSP.setCellValueFactory(new PropertyValueFactory<>("tenHang"));
         colLoaiSP.setCellValueFactory(new PropertyValueFactory<>("loaiHang"));
+        colLoaiSP.setCellFactory(col -> new TableCell<MenuItem, Integer>() {
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    Integer maLoaiHang = getTableRow().getItem().getLoaiHang();
+                    String tenLoaiHang = menuBLL.getTenLoaiHang(maLoaiHang);
+                    setText(tenLoaiHang);
+                }
+            }
+        });
+
         colGiaSP.setCellValueFactory(new PropertyValueFactory<>("gia"));
 
         colGiaSP.setCellFactory(column -> new TableCell<>() {
@@ -146,9 +164,15 @@ public class MenuController {
         }
     }
 
-    public void Thoat(){
-        Stage stage = (Stage) textFieldName.getScene().getWindow();
-        stage.close();
+    public void Thoat() throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
+        Scene loginScene = new Scene(loader.load());
+        Stage currentStage = (Stage) comboBoxLoai.getScene().getWindow();
+        Stage newStage = new Stage();
+        newStage.setScene(loginScene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        currentStage.close();
+        newStage.show();
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {

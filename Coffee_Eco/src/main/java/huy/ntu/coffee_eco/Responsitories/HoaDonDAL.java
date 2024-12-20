@@ -1,13 +1,12 @@
 package huy.ntu.coffee_eco.Responsitories;
 
+import huy.ntu.coffee_eco.Models.Entities.ChiTietHoaDon;
+import huy.ntu.coffee_eco.Models.Entities.HoaDon;
 import huy.ntu.coffee_eco.Models.Entities.LoaiHang;
 import huy.ntu.coffee_eco.Models.Entities.MenuItem;
 import huy.ntu.coffee_eco.Untils.DSUntils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class HoaDonDAL {
@@ -22,12 +21,29 @@ public class HoaDonDAL {
                 String tenloaihang = resultSet.getString("TenLoaiHang");
                 loaiHangs.add(new LoaiHang(maloaihang, tenloaihang));
             }
-            conn.close();
+            DSUntils.CloseConnect(conn);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getTenLoaiHang(int maLoaiHang) {
+        String tenLoaiHang = "Không xác định";
+        try {
+            Connection conn = DSUntils.DBConnect();
+            String query = "SELECT TenLoaiHang FROM loaihang WHERE MaLoaiHang = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, maLoaiHang);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                tenLoaiHang = resultSet.getString("TenLoaiHang");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return tenLoaiHang;
     }
 
     public void loadMenu(List<MenuItem> menuItems,int maLoaiHang){
@@ -53,5 +69,70 @@ public class HoaDonDAL {
             throw new RuntimeException(e);
         }
     }
+
+    public String getMenu(int maMenu) {
+        String tenSP = "Không xác định";
+        try {
+            Connection conn = DSUntils.DBConnect();
+            String query = "SELECT TenSP FROM menu WHERE MaSP = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, maMenu);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                tenSP = resultSet.getString("TenSP");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return tenSP;
+    }
+
+
+    public int themHoaDon(HoaDon hoaDon) {
+        String query = "INSERT INTO hoadon (MaNV, NgayLap, TongTien ) VALUES (?, ?,?)";
+        try {
+            Connection conn=DSUntils.DBConnect();
+            PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, hoaDon.getMaNV());
+            statement.setDate(2, hoaDon.getNgaylap());
+            statement.setDouble(3,hoaDon.getThanhtien());
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void themCTHD(ChiTietHoaDon cthd) {
+        String query = "INSERT INTO chitiethd (MaHD, MaLoaiHang, MaSP, SoLuong, ThanhTien) VALUES (?, ?, ?, ?, ?)";
+        try {
+            Connection conn=DSUntils.DBConnect();
+            PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, cthd.getMaHD());
+            statement.setInt(2,cthd.getMaLoai());
+            statement.setInt(3,cthd.getMaMenu());
+            statement.setInt(4,cthd.getSoluong());
+            statement.setDouble(5,cthd.getGia());
+            statement.executeUpdate();
+
+            // Lấy mã hóa đơn tự tăng
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                generatedKeys.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

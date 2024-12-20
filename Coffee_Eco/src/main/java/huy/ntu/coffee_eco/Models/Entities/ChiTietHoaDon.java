@@ -13,6 +13,17 @@ public class ChiTietHoaDon {
         this.gia = gia;
     }
 
+    public ChiTietHoaDon() {
+    }
+
+    public int getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
+    }
+
     public int getMaHD() {
         return maHD;
     }

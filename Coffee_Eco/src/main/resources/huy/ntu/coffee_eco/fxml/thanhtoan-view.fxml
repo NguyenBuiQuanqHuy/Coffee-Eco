@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -45,17 +44,22 @@
                   <Font name="Verdana Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="labelUser" layoutX="687.0" layoutY="-1.0" prefHeight="36.0" prefWidth="124.0" text="Tên người dùng" textAlignment="CENTER">
+            <Label fx:id="labelTenNV" layoutX="635.0" layoutY="-4.0" prefHeight="36.0" prefWidth="216.0" text="Tên người dùng" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="687.0" layoutY="29.0" onMouseClicked="#LogOut" prefHeight="36.0" prefWidth="124.0" text="Đăng xuất" textFill="#ff0909">
+            <Label layoutX="635.0" layoutY="41.0" onMouseClicked="#LogOut" prefHeight="36.0" prefWidth="124.0" text="Đăng xuất" textFill="#ff0909">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
             <Line endX="752.0" layoutX="100.0" layoutY="72.0" startX="-100.0" />
+            <Label fx:id="labelTenTK" layoutX="635.0" layoutY="18.0" prefHeight="36.0" prefWidth="216.0" text="Tên tài khoản" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>
@@ -67,7 +71,7 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="320.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="319.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
             <Label layoutX="22.0" layoutY="50.0" text="Loại: ">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -95,7 +99,7 @@
             </Label>
             <ComboBox fx:id="comboBoxLoai" layoutX="70.0" layoutY="48.0" prefHeight="26.0" prefWidth="244.0" />
             <ComboBox fx:id="comboBoxMenu" layoutX="70.0" layoutY="105.0" prefHeight="26.0" prefWidth="244.0" />
-            <Text fx:id="textGia" fill="#59b75b" layoutX="70.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="63.98137664794922">
+            <Text fx:id="textGia" fill="#59b75b" layoutX="70.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="63.98137664794922">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -110,15 +114,11 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="textFieldSoluong" layoutX="251.0" layoutY="155.0" prefHeight="26.0" prefWidth="37.0" style="-fx-alignment: center;" text="100">
+            <TextField fx:id="textFieldSoluong" layoutX="251.0" layoutY="155.0" prefHeight="26.0" prefWidth="37.0" style="-fx-alignment: center;">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></TextField>
-            <ImageView fx:id="imageSP" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/caphesua.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imageSP" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="215.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleThemSP" prefHeight="36.0" prefWidth="97.0" text="Thêm">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -136,13 +136,13 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
-            <TableView fx:id="tableViewDetail" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="500.0">
-              <columns>
-                <TableColumn fx:id="colType" prefWidth="150.40003061294556" text="Loại" />
-                <TableColumn fx:id="colMenu" minWidth="0.0" prefWidth="150.40005493164062" text="Tên" />
-                  <TableColumn fx:id="colQuatity" minWidth="0.0" prefWidth="83.20001220703125" text="Số lượng" />
-                  <TableColumn fx:id="colCost" prefWidth="114.4000183105469" text="Giá" />
-              </columns>
+            <TableView fx:id="tableViewCTHD" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="500.0">
+               <columns>
+                  <TableColumn fx:id="colLoai" prefWidth="150.40003061294556" text="Loại" />
+                  <TableColumn fx:id="colMenu" minWidth="0.0" prefWidth="150.40005493164062" text="Tên" />
+                  <TableColumn fx:id="colSoLuong" minWidth="0.0" prefWidth="83.20001220703125" text="Số lượng" />
+                  <TableColumn fx:id="colGia" prefWidth="114.4000183105469" text="Giá" />
+               </columns>
             </TableView>
             <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleThanhToan" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
                <font>
@@ -154,7 +154,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Text fx:id="textThanhTien" fill="#59b75b" layoutX="135.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35.000" textAlignment="CENTER" wrappingWidth="110.87094116210938">
+            <Text fx:id="textThanhTien" fill="#59b75b" layoutX="135.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.87094116210938">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
