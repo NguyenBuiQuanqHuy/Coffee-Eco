@@ -89,12 +89,12 @@ public class HoaDonDAL {
 
 
     public int themHoaDon(HoaDon hoaDon) {
-        String query = "INSERT INTO hoadon (MaNV, NgayLap, TongTien ) VALUES (?, ?,?)";
+        String query = "INSERT INTO hoadon (MaNV, NgayTao, TongTien ) VALUES (?, ?,?)";
         try {
             Connection conn=DSUntils.DBConnect();
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, hoaDon.getMaNV());
-            statement.setDate(2, hoaDon.getNgaylap());
+            statement.setTimestamp(2, hoaDon.getNgaylap());
             statement.setDouble(3,hoaDon.getThanhtien());
             statement.executeUpdate();
 
@@ -111,7 +111,7 @@ public class HoaDonDAL {
     }
 
     public void themCTHD(ChiTietHoaDon cthd) {
-        String query = "INSERT INTO chitiethd (MaHD, MaLoaiHang, MaSP, SoLuong, ThanhTien) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO chitiethd (MaHD, MaLoaiHang, MaSP, SoLuong, DonGia, ThanhTien) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection conn=DSUntils.DBConnect();
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -119,10 +119,10 @@ public class HoaDonDAL {
             statement.setInt(2,cthd.getMaLoai());
             statement.setInt(3,cthd.getMaMenu());
             statement.setInt(4,cthd.getSoluong());
-            statement.setDouble(5,cthd.getGia());
+            statement.setFloat(5,cthd.getGia());
+            statement.setFloat(6,cthd.getThanhtien());
             statement.executeUpdate();
 
-            // Lấy mã hóa đơn tự tăng
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 generatedKeys.getInt(1);

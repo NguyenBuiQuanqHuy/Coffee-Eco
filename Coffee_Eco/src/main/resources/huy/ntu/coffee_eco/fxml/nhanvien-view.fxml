@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
+<BorderPane style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="762.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
@@ -125,7 +125,7 @@
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Line endX="811.9999389648438" endY="1.5258789289873675E-6" layoutX="132.0" startX="-132.00001525878906" startY="1.5258789289873675E-6" />
+            <Line endX="632.0" endY="9.15527380129788E-6" layoutX="132.0" startX="-132.00001525878906" startY="1.5258789289873675E-6" />
             <Button layoutX="211.0" layoutY="385.0" onAction="#ExitButton" prefHeight="26.0" prefWidth="62.0" text="Thoát" />
           </children>
       </AnchorPane>

@@ -3,25 +3,23 @@ package huy.ntu.coffee_eco.Models.Entities;
 public class ChiTietHoaDon {
     int maCTHD,maHD,maMenu,maLoai;
     int soluong;
-    double gia;
+    Float gia,thanhtien;
 
-    public ChiTietHoaDon(int maHD, int maLoai, int maMenu, int soluong, double gia) {
+    public ChiTietHoaDon(int maHD, int maLoai, int maMenu, int soluong, Float gia, Float thanhtien) {
         this.maHD = maHD;
         this.maLoai = maLoai;
         this.maMenu = maMenu;
         this.soluong = soluong;
         this.gia = gia;
+        this.thanhtien = thanhtien;
     }
 
-    public ChiTietHoaDon() {
+    public int getMaCTHD() {
+        return maCTHD;
     }
 
-    public int getMaLoai() {
-        return maLoai;
-    }
-
-    public void setMaLoai(int maLoai) {
-        this.maLoai = maLoai;
+    public void setMaCTHD(int maCTHD) {
+        this.maCTHD = maCTHD;
     }
 
     public int getMaHD() {
@@ -40,6 +38,14 @@ public class ChiTietHoaDon {
         this.maMenu = maMenu;
     }
 
+    public int getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
+    }
+
     public int getSoluong() {
         return soluong;
     }
@@ -48,11 +54,19 @@ public class ChiTietHoaDon {
         this.soluong = soluong;
     }
 
-    public double getGia() {
+    public Float getGia() {
         return gia;
     }
 
-    public void setGia(double gia) {
+    public void setGia(Float gia) {
         this.gia = gia;
+    }
+
+    public Float getThanhtien() {
+        return thanhtien;
+    }
+
+    public void setThanhtien(Float thanhtien) {
+        this.thanhtien = thanhtien;
     }
 }

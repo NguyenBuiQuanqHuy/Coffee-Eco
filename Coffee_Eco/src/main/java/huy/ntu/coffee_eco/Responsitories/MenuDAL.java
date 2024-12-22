@@ -11,14 +11,12 @@ public class MenuDAL {
     public void loadMenu(ObservableList<MenuItem> menuList) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String query = "SELECT m.MaSP,l.MaLoaiHang, l.TenLoaiHang, m.TenSP, m.Gia, m.HinhAnh " +
-                    "FROM menu m " +
-                    "JOIN loaihang l ON m.LoaiHang = l.MaLoaiHang;";
+            String query = "SELECT * FROM menu";
             PreparedStatement statement= conn.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 int id = resultSet.getInt("MaSP");
-                int loaiHang = resultSet.getInt("MaLoaiHang");
+                int loaiHang = resultSet.getInt("LoaiHang");
                 String tenHang = resultSet.getString("TenSP");
                 Float giaHang = resultSet.getFloat("Gia");
                 String hinh = resultSet.getString("HinhAnh");

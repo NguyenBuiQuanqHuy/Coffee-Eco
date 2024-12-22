@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.HoaDonController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="852.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.HoaDonController">
    <bottom>
       <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
@@ -36,10 +36,10 @@
          </children></AnchorPane>
    </bottom>
    <top>
-      <AnchorPane prefHeight="70.0" prefWidth="744.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
+      <AnchorPane minWidth="-Infinity" prefHeight="78.0" prefWidth="100.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="358.0" layoutY="27.0" />
-            <Label layoutX="402.0" layoutY="17.0" text="Menu" textAlignment="CENTER" textFill="#ff6a05">
+            <Label layoutX="387.0" layoutY="17.0" text="Menu" textAlignment="CENTER" textFill="#ff6a05">
                <font>
                   <Font name="Verdana Bold" size="24.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Line endX="752.0" layoutX="100.0" layoutY="72.0" startX="-100.0" />
+            <Line endX="745.0999755859375" layoutX="100.0" layoutY="72.0" startX="-100.0" />
             <Label fx:id="labelTenTK" layoutX="635.0" layoutY="18.0" prefHeight="36.0" prefWidth="216.0" text="Tên tài khoản" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />

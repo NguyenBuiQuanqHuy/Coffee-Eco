@@ -1,16 +1,18 @@
 package huy.ntu.coffee_eco.Models.Entities;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HoaDon {
     int maHD;
     int MaNV;
-    Date ngaylap;
-    Double thanhtien;
+    Timestamp ngaylap;
+    Float thanhtien;
 
-    public HoaDon(int maNV, Date ngaylap, Double thanhtien) {
+    public HoaDon(int maNV, Timestamp ngaylap, Float thanhtien) {
         MaNV = maNV;
         this.ngaylap = ngaylap;
         this.thanhtien = thanhtien;
@@ -32,19 +34,19 @@ public class HoaDon {
         MaNV = maNV;
     }
 
-    public Date getNgaylap() {
+    public Timestamp getNgaylap() {
         return ngaylap;
     }
 
-    public void setNgaylap(Date ngaylap) {
+    public void setNgaylap(Timestamp ngaylap) {
         this.ngaylap = ngaylap;
     }
 
-    public Double getThanhtien() {
+    public Float getThanhtien() {
         return thanhtien;
     }
 
-    public void setThanhtien(Double thanhtien) {
+    public void setThanhtien(Float thanhtien) {
         this.thanhtien = thanhtien;
     }
 }

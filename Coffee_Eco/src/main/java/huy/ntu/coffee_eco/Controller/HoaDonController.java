@@ -17,7 +17,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
+
 
 public class HoaDonController {
     @FXML
@@ -39,14 +41,12 @@ public class HoaDonController {
     @FXML
     TableColumn<ChiTietHoaDon,Integer> colSoLuong;
     @FXML
-    TableColumn<ChiTietHoaDon,Double> colGia;
+    TableColumn<ChiTietHoaDon,Float> colGia;
 
     HoaDonBLL hoaDonBLL=new HoaDonBLL();
     private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
 
     public void initialize() {
-
-        //TaiKhoan currentUser = CurrentUser.getCurrentUser();
         TaiKhoan currentUser = CurrentUser.getCurrentUser();
         if (currentUser == null || currentUser.getNhanVien() == null) {
             System.out.println("CurrentUser hoặc nhân viên chưa được khởi tạo!");
@@ -91,7 +91,7 @@ public class HoaDonController {
             private final DecimalFormat format = new DecimalFormat("#,###.###");
 
             @Override
-            protected void updateItem(Double gia, boolean empty) {
+            protected void updateItem(Float gia, boolean empty) {
                 super.updateItem(gia, empty);
                 if (empty || gia == null) {
                     setText(null);
@@ -165,8 +165,9 @@ public class HoaDonController {
         MenuItem selectedMenuItem = comboBoxMenu.getValue();
         LoaiHang selectedLoaiHang= comboBoxLoai.getValue();
         int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
-        double thanhTien = Double.parseDouble(textGia.getText().trim().replace(",", ""));
-        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0,selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong, thanhTien);
+        Float dongia = Float.parseFloat(textGia.getText().trim().replace(",", ""));
+        Float thanhtien = dongia*soLuong;
+        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0,selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong,dongia, thanhtien);
         chiTietHoaDons.add(chiTietHoaDon);
         tableViewCTHD.refresh();
         comboBoxLoai.getSelectionModel().clearSelection();
@@ -201,7 +202,6 @@ public class HoaDonController {
     }
 
     public void handleThanhToan() {
-        // Kiểm tra nếu danh sách chi tiết hóa đơn rỗng
         if (chiTietHoaDons.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Cảnh báo");
@@ -213,8 +213,9 @@ public class HoaDonController {
 
         TaiKhoan currentUser = CurrentUser.getCurrentUser();
         int maNV = currentUser.getNhanVien().getMaNV();
-        double thanhTien = Double.parseDouble(textThanhTien.getText().trim().replace(",", ""));
-        java.sql.Date ngayTao = new java.sql.Date(System.currentTimeMillis());
+        float thanhTien = Float.parseFloat(textThanhTien.getText().trim().replace(",", ""));
+
+        Timestamp ngayTao = new Timestamp(System.currentTimeMillis());
 
         HoaDon hoaDon = new HoaDon(maNV, ngayTao,thanhTien);
         int maHD = hoaDonBLL.ThemHoadon(hoaDon);
@@ -233,7 +234,6 @@ public class HoaDonController {
         alert.setContentText("Hóa đơn đã được tạo thành công!");
         alert.showAndWait();
 
-        // Reset các thành phần giao diện
         textThanhTien.setText("");
         comboBoxLoai.getSelectionModel().clearSelection();
         comboBoxMenu.getSelectionModel().clearSelection();
@@ -244,8 +244,15 @@ public class HoaDonController {
     }
 
 
-    public void ThongKe(){
-
+    public void ThongKe() throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thongke-view.fxml"));
+        Scene loginScene = new Scene(loader.load());
+        Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+        Stage newStage = new Stage();
+        newStage.setScene(loginScene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        currentStage.close();
+        newStage.show();
     }
 
     public void QuanLyMenu() throws IOException {
@@ -282,10 +289,8 @@ public class HoaDonController {
     private void TongTien() {
         double total = 0.0;
         for (ChiTietHoaDon chiTiet : chiTietHoaDons) {
-            total += chiTiet.getGia();  // Lấy giá trị thanh toán của mỗi sản phẩm
+            total += chiTiet.getGia();
         }
-
-        // Hiển thị tổng tiền vào textThanhTien
         DecimalFormat format = new DecimalFormat("#,###.###");
         textThanhTien.setText(format.format(total));
     }
