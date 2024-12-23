@@ -8,10 +8,6 @@ import javafx.collections.ObservableList;
 public class NhanVienBLL {
     NhanVienDAL nhanVienDAL=new NhanVienDAL();
 
-    public NhanVienBLL() {
-        this.nhanVienDAL = nhanVienDAL;
-    }
-
     public boolean themNV(NhanVien nv){
         String matkhauHash = ComonUntils.hashPassword(nv.getMatkhau());
         nv.setMatkhau(matkhauHash);
@@ -24,15 +20,12 @@ public class NhanVienBLL {
     }
 
     public void suaNV(NhanVien nv){
+        String matkhauHash = ComonUntils.hashPassword(nv.getMatkhau());
+        nv.setMatkhau(matkhauHash);
         nhanVienDAL.suaNV(nv);
     }
     public void xoaNV(int maNV) {
         nhanVienDAL.xoaNV(maNV);
     }
-
-//    public void dangNhap(String tenTaiKhoan, String matkhau) {
-//        String matkhauHash = ComonUntils.hashPassword(matkhau);
-//        nhanVienDAL.Login(tenTaiKhoan, matkhauHash);
-//    }
 
 }

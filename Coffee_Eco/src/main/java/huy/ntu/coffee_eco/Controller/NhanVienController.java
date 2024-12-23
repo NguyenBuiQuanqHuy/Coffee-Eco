@@ -64,22 +64,16 @@ public class NhanVienController {
             }
         });
 
-        loadNhanVienData();
-        tableNhanVien.setItems(nhanVienList);
-
-    }
-
-    private void loadNhanVienData() {
         nhanVienBLL.loadNhanVienData(nhanVienList);
+        tableNhanVien.setItems(nhanVienList);
     }
 
-    @FXML
     public void AddButton() {
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
-        String tenTK = txtTaikhoan.getText().trim();
-        String matkhau = txtMatkhau.getText().trim();
+        String tenTK = txtTaikhoan.getText().trim().toLowerCase();
+        String matkhau = txtMatkhau.getText().trim().toLowerCase();
         Float luong;
 
 
@@ -96,8 +90,6 @@ public class NhanVienController {
             alert.show();
             return;
         }
-
-
 
         String gioitinh = "";
         if (RadiobuttonNam.isSelected()) {
@@ -116,6 +108,7 @@ public class NhanVienController {
             alert.show();
             return;
         }
+
 
         NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
         boolean result = nhanVienBLL.themNV(nv);
@@ -147,12 +140,27 @@ public class NhanVienController {
             return;
         }
 
+
+
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
         String tenTK = txtTaikhoan.getText().trim();
         String matkhau = txtMatkhau.getText().trim();
         Float luong;
+
+        if (ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
+            alert.show();
+            return;
+        }
+
+        boolean taiKhoanTonTai = nhanVienList.stream().anyMatch(nv -> nv.getTaikhoan().equalsIgnoreCase(tenTK));
+        if (taiKhoanTonTai) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Tên tài khoản đã tồn tại, vui lòng chọn tài khoản khác!", ButtonType.OK);
+            alert.show();
+            return;
+        }
 
         try {
             luong = Float.parseFloat(txtLuong.getText().trim());
@@ -185,6 +193,13 @@ public class NhanVienController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Sửa nhân viên thành công", ButtonType.OK);
             alert.show();
             tableNhanVien.refresh();
+            txtHoten.clear();
+            txtDiachi.clear();
+            txtDienthoai.clear();
+            txtLuong.clear();
+            txtTaikhoan.clear();
+            txtMatkhau.clear();
+            ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Sửa nhân viên thất bại", ButtonType.OK);
             alert.show();
@@ -204,16 +219,11 @@ public class NhanVienController {
         confirmAlert.showAndWait();
 
         if (confirmAlert.getResult() == ButtonType.YES) {
-            try {
                 nhanVienBLL.xoaNV(selectedNhanVien.getMaNV());
                 nhanVienList.remove(selectedNhanVien);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Xóa nhân viên thành công", ButtonType.OK);
                 alert.show();
                 tableNhanVien.refresh();
-            } catch (RuntimeException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Xóa nhân viên thất bại", ButtonType.OK);
-                alert.show();
-            }
         }
     }
 

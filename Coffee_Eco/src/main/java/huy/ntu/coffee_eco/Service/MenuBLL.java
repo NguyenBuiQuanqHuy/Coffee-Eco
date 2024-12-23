@@ -21,6 +21,11 @@ public class MenuBLL {
     public void AddMenu(MenuItem menuItem){
         menuDAL.addMenu(menuItem);
     }
+
+    public void UpdateMenu(MenuItem menuItem){
+        menuDAL.updateMenu(menuItem);
+    }
+
     public void DeleteMenu(int MenuID){
         menuDAL.deleteMenu(MenuID);
     }

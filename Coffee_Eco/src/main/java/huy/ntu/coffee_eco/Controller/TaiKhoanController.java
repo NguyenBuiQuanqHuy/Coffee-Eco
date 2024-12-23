@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,8 +23,32 @@ public class TaiKhoanController {
     TextField textFieldTK;
     @FXML
     PasswordField matKhau;
+    @FXML
+    CheckBox checkBoxMK;
+    @FXML
+    TextField textFieldMK;
 
     TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
+
+
+    public void initialize() {
+        textFieldMK.setVisible(false);
+
+        checkBoxMK.setOnAction(event -> {
+            if (checkBoxMK.isSelected()) {
+                matKhau.setVisible(false);
+                textFieldMK.setVisible(true);
+                textFieldMK.setText(matKhau.getText());
+                //textFieldMK.requestFocus();
+            } else {
+                matKhau.setVisible(true);
+                textFieldMK.setVisible(false);
+                matKhau.setText(textFieldMK.getText());
+            }
+        });
+    }
+
+
     public void handleDangNhap() throws IOException {
         String taikhoan = textFieldTK.getText().trim();
         String matkhau = matKhau.getText().trim();

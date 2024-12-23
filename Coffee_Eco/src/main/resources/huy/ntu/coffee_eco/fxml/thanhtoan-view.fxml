@@ -49,13 +49,18 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="635.0" layoutY="41.0" onMouseClicked="#LogOut" prefHeight="36.0" prefWidth="124.0" text="Đăng xuất" textFill="#ff0909">
+            <Label layoutX="635.0" layoutY="41.0" onMouseClicked="#DangXuat" prefHeight="36.0" prefWidth="86.0" text="Đăng xuất" textFill="#ff0909">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
             <Line endX="745.0999755859375" layoutX="100.0" layoutY="72.0" startX="-100.0" />
             <Label fx:id="labelTenTK" layoutX="635.0" layoutY="18.0" prefHeight="36.0" prefWidth="216.0" text="Tên tài khoản" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="764.0" layoutY="41.0" onMouseClicked="#Thoat" prefHeight="36.0" prefWidth="54.0" text="Thoát" textAlignment="CENTER" textFill="#ff0909">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

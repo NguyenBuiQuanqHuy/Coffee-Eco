@@ -142,24 +142,6 @@ public class HoaDonController {
     }
 
 
-    public void LogOut() throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Xác nhận Đăng xuất");
-        alert.setHeaderText("Bạn có chắc chắn muốn đăng xuất?");
-        alert.setContentText("Chọn 'OK' để đăng xuất hoặc 'Hủy' để tiếp tục sử dụng ứng dụng.");
-
-        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
-        if (result == ButtonType.OK) {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/login-view.fxml"));
-            Scene loginScene = new Scene(loader.load());
-            Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
-            Stage newStage = new Stage();
-            newStage.setScene(loginScene);
-            newStage.initStyle(StageStyle.UNDECORATED);
-            currentStage.close();
-            newStage.show();
-        }
-    }
 
     public void handleThemSP() {
         MenuItem selectedMenuItem = comboBoxMenu.getValue();
@@ -294,4 +276,38 @@ public class HoaDonController {
         DecimalFormat format = new DecimalFormat("#,###.###");
         textThanhTien.setText(format.format(total));
     }
+
+    public void DangXuat() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận Đăng xuất");
+        alert.setHeaderText("Bạn có chắc chắn muốn đăng xuất?");
+        alert.setContentText("Chọn 'OK' để đăng xuất hoặc 'Hủy' để tiếp tục sử dụng ứng dụng.");
+
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+        if (result == ButtonType.OK) {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/login-view.fxml"));
+            Scene loginScene = new Scene(loader.load());
+            Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+            Stage newStage = new Stage();
+            newStage.setScene(loginScene);
+            newStage.initStyle(StageStyle.UNDECORATED);
+            currentStage.close();
+            newStage.show();
+        }
+    }
+
+    public void Thoat(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận thoát");
+        alert.setHeaderText("Bạn có chắc chắn muốn thoát?");
+        alert.setContentText("Chọn 'Có' để thoát, 'Không' để hủy.");
+
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+            Stage stage = (Stage) labelTenTK.getScene().getWindow();
+            stage.close();
+        }
+    }
+
 }

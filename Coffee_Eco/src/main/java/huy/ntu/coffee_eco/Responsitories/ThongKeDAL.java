@@ -79,7 +79,7 @@ public class ThongKeDAL {
     }
 
     public String getNhanVien(int maNV) {
-        String tenNV = "Không xác định";
+        String tenNV = "Đã nghỉ việc";
         try {
             Connection conn = DSUntils.DBConnect();
             String query = "SELECT TenNV FROM nhanvien WHERE MaNV = ?";

@@ -37,25 +37,6 @@ public class NhanVienDAL {
         return false;
     }
 
-//  public void Login(String taikhoan, String matkhauHash) {
-//        Connection conn = null;
-//       PreparedStatement stmt = null;
-//      if (taikhoan == null || taikhoan.trim().isEmpty()) {
-//          return;
-//      }
-//        try {
-//            conn = DSUntils.DBConnect();
-//            String sql = "INSERT INTO user (TenTK, MatKhau) VALUES (?, ?)";
-//            stmt = conn.prepareStatement(sql);
-//            stmt.setString(1, taikhoan);
-//            stmt.setString(2, matkhauHash);
-//            stmt.executeUpdate();
-//            DSUntils.CloseConnect(conn);
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void LoadNhanVien(ObservableList<NhanVien> nhanVienList){
         try {
             Connection conn=DSUntils.DBConnect();
@@ -64,6 +45,7 @@ public class NhanVienDAL {
             ResultSet resultSet=statement.executeQuery(query);
 
             while (resultSet.next()){
+                int manv = resultSet.getInt("MaNV");
                 String ten = resultSet.getString("TenNV");
                 String diachi = resultSet.getString("DiaChi");
                 String gioitinh = resultSet.getString("GioiTinh");
@@ -73,6 +55,7 @@ public class NhanVienDAL {
                 String matkhau = resultSet.getString("MatKhau");
 
                 NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
+                nv.setMaNV(manv);
                 nhanVienList.add(nv);
             }
             DSUntils.CloseConnect(conn);
@@ -86,19 +69,17 @@ public class NhanVienDAL {
     public void suaNV(NhanVien nv) {
         try {
             Connection conn = DSUntils.DBConnect();
-            conn.setAutoCommit(false);
             String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE MaNV=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(2, nv.getTen());
-            pstmt.setString(3, nv.getDiachi());
-            pstmt.setString(4, nv.getGioitinh());
-            pstmt.setString(5, nv.getDienthoai());
-            pstmt.setFloat(6, nv.getLuong());
-            pstmt.setString(7, nv.getTaikhoan());
-            pstmt.setString(8, nv.getMatkhau());
+            pstmt.setString(1, nv.getTen());
+            pstmt.setString(2, nv.getDiachi());
+            pstmt.setString(3, nv.getGioitinh());
+            pstmt.setString(4, nv.getDienthoai());
+            pstmt.setFloat(5, nv.getLuong());
+            pstmt.setString(6, nv.getTaikhoan());
+            pstmt.setString(7, nv.getMatkhau());
+            pstmt.setInt(8,nv.getMaNV());
             pstmt.executeUpdate();
-            conn.commit();
-            conn.setAutoCommit(true);
             DSUntils.CloseConnect(conn);
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +89,12 @@ public class NhanVienDAL {
     public void xoaNV(int maNV) {
         try {
             Connection conn = DSUntils.DBConnect();
-            String query = "DELETE FROM nhanvien WHERE MaNV=?";
+            String updateQuery = "UPDATE hoadon SET MaNV = 0 WHERE MaNV = ?";
+            PreparedStatement updateStmt = conn.prepareStatement(updateQuery);
+            updateStmt.setInt(1, maNV);
+            updateStmt.executeUpdate();
+
+            String query = "DELETE FROM nhanvien WHERE MaNV = ? ";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, maNV);
             pstmt.executeUpdate();

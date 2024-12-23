@@ -141,7 +141,39 @@ public class MenuController {
     }
 
     public void CapNhat(){
+        MenuItem selectedItem = tableViewMenu.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn món cần sửa!", ButtonType.OK);
+            alert.show();
+            return;
+        }
+        String tenHang = textFieldName.getText().trim();
+        String giaStr = textFieldGia.getText().trim();
+        LoaiHang loaiHang = comboBoxLoai.getValue();
+        if (tenHang.isEmpty() || giaStr.isEmpty() || loaiHang == null || savedImagePath == null) {
+            showAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin và chọn ảnh!", Alert.AlertType.ERROR);
+            return;
+        }
+        float gia;
+        try {
+            gia = Float.parseFloat(giaStr);
+        } catch (NumberFormatException e) {
+            showAlert("Lỗi", "Giá phải là số hợp lệ!", Alert.AlertType.ERROR);
+            return;
+        }
 
+        selectedItem.setLoaiHang(loaiHang.getMaloaihang());
+        selectedItem.setTenHang(tenHang);
+        selectedItem.setGia(gia);
+        selectedItem.setHinhAnh(savedImagePath);
+        menuBLL.UpdateMenu(selectedItem);
+        tableViewMenu.refresh();
+        showAlert("Thành công", "Cập nhật món thành công!", Alert.AlertType.INFORMATION);
+        textFieldName.clear();
+        textFieldGia.clear();
+        comboBoxLoai.getSelectionModel().clearSelection();
+        imageSanPham.setImage(null);
+        savedImagePath = null;
     }
 
     public void Xoa() {

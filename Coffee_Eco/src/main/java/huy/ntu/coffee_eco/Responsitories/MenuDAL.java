@@ -95,6 +95,25 @@ public class MenuDAL {
         }
     }
 
+    public void updateMenu(MenuItem menuItem){
+        String sql= "UPDATE menu SET LoaiHang=?,TenSP=?, Gia=?, HinhAnh=? WHERE MaSP=?";
+        try {
+            Connection conn = DSUntils.DBConnect();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1,menuItem.getLoaiHang());
+            statement.setString(2,menuItem.getTenHang());
+            statement.setFloat(3,menuItem.getGia());
+            statement.setString(4, menuItem.getHinhAnh());
+            statement.setInt(5,menuItem.getId());
+            statement.executeUpdate();
+            DSUntils.CloseConnect(conn);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void deleteMenu(int menuId) {
         try {
             Connection conn = DSUntils.DBConnect();
