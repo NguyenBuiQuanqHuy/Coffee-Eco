@@ -25,7 +25,7 @@ public class HoaDonController {
     @FXML
     TextField textFieldSoluong;
     @FXML
-    Label labelTenNV,labelTenTK;
+    Label labelTenNV;
     @FXML
     ComboBox<LoaiHang> comboBoxLoai;
     @FXML
@@ -37,11 +37,11 @@ public class HoaDonController {
     @FXML
     TableView<ChiTietHoaDon> tableViewCTHD;
     @FXML
-    TableColumn<ChiTietHoaDon,Integer> colLoai,colMenu;
+    TableColumn<ChiTietHoaDon,Integer> colMenu;
     @FXML
     TableColumn<ChiTietHoaDon,Integer> colSoLuong;
     @FXML
-    TableColumn<ChiTietHoaDon,Float> colGia;
+    TableColumn<ChiTietHoaDon,Float> colGia,colThanhTien;
 
     HoaDonBLL hoaDonBLL=new HoaDonBLL();
     private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
@@ -55,21 +55,6 @@ public class HoaDonController {
         }
 
         labelTenNV.setText(currentUser.getNhanVien().getTen());
-        labelTenTK.setText(currentUser.getTenTK());
-        colLoai.setCellValueFactory(new PropertyValueFactory<>("maLoai"));
-        colLoai.setCellFactory(col -> new TableCell<ChiTietHoaDon, Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setText(null);
-                } else {
-                    Integer maLoaiHang = getTableRow().getItem().getMaLoai();
-                    String tenLoaiHang = hoaDonBLL.getTenLoaiHang(maLoaiHang);
-                    setText(tenLoaiHang);
-                }
-            }
-        });
 
         colMenu.setCellValueFactory(new PropertyValueFactory<>("maMenu"));
         colMenu.setCellFactory(col -> new TableCell<ChiTietHoaDon, Integer>() {
@@ -101,6 +86,20 @@ public class HoaDonController {
             }
         });
 
+        colThanhTien.setCellValueFactory(new PropertyValueFactory<>("thanhtien"));
+        colThanhTien.setCellFactory(column -> new TableCell<>() {
+            private final DecimalFormat format = new DecimalFormat("#,###.###");
+
+            @Override
+            protected void updateItem(Float gia, boolean empty) {
+                super.updateItem(gia, empty);
+                if (empty || gia == null) {
+                    setText(null);
+                } else {
+                    setText(format.format(gia));
+                }
+            }
+        });
 
         tableViewCTHD.setItems(chiTietHoaDons);
 
@@ -147,8 +146,8 @@ public class HoaDonController {
         MenuItem selectedMenuItem = comboBoxMenu.getValue();
         LoaiHang selectedLoaiHang= comboBoxLoai.getValue();
         int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
-        Float dongia = Float.parseFloat(textGia.getText().trim().replace(",", ""));
-        Float thanhtien = dongia*soLuong;
+        Float thanhtien = Float.parseFloat(textGia.getText().trim().replace(",", ""));
+        Float dongia = selectedMenuItem.getGia();
         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0,selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong,dongia, thanhtien);
         chiTietHoaDons.add(chiTietHoaDon);
         tableViewCTHD.refresh();
@@ -229,7 +228,7 @@ public class HoaDonController {
     public void ThongKe() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thongke-view.fxml"));
         Scene loginScene = new Scene(loader.load());
-        Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+        Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
         Stage newStage = new Stage();
         newStage.setScene(loginScene);
         newStage.initStyle(StageStyle.UNDECORATED);
@@ -240,7 +239,7 @@ public class HoaDonController {
     public void QuanLyMenu() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/menu-view.fxml"));
         Scene loginScene = new Scene(loader.load());
-        Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+        Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
         Stage newStage = new Stage();
         newStage.setScene(loginScene);
         newStage.initStyle(StageStyle.UNDECORATED);
@@ -251,7 +250,7 @@ public class HoaDonController {
     public void QuanLyNhanVien() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/nhanvien-view.fxml"));
         Scene loginScene = new Scene(loader.load());
-        Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+        Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
         Stage newStage = new Stage();
         newStage.setScene(loginScene);
         newStage.initStyle(StageStyle.UNDECORATED);
@@ -271,7 +270,7 @@ public class HoaDonController {
     private void TongTien() {
         double total = 0.0;
         for (ChiTietHoaDon chiTiet : chiTietHoaDons) {
-            total += chiTiet.getGia();
+            total += chiTiet.getThanhtien();
         }
         DecimalFormat format = new DecimalFormat("#,###.###");
         textThanhTien.setText(format.format(total));
@@ -287,7 +286,7 @@ public class HoaDonController {
         if (result == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/login-view.fxml"));
             Scene loginScene = new Scene(loader.load());
-            Stage currentStage = (Stage) labelTenTK.getScene().getWindow();
+            Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
             Stage newStage = new Stage();
             newStage.setScene(loginScene);
             newStage.initStyle(StageStyle.UNDECORATED);
@@ -305,7 +304,7 @@ public class HoaDonController {
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
         if (result == ButtonType.OK) {
-            Stage stage = (Stage) labelTenTK.getScene().getWindow();
+            Stage stage = (Stage) labelTenNV.getScene().getWindow();
             stage.close();
         }
     }

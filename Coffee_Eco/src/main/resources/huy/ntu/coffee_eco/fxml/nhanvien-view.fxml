@@ -8,14 +8,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
+<BorderPane prefHeight="550.0" prefWidth="850.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
    <top>
-      <AnchorPane prefHeight="60.0" prefWidth="762.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="257.0" layoutY="12.0" style="-fx-background-color: #b4fec2;" text="QUẢN LÝ NHÂN VIÊN" textFill="#ff6a05">
+            <Label layoutX="331.0" layoutY="6.0" text="QUẢN LÝ NHÂN VIÊN" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -23,11 +22,11 @@
          </children>
       </AnchorPane>
    </top>
-   <bottom>
-      <AnchorPane minWidth="-Infinity" prefHeight="465.0" prefWidth="761.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane minWidth="-Infinity" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
           <children>
       
-                    <TableView fx:id="tableNhanVien" layoutX="284.0" layoutY="64.0" prefHeight="399.0" prefWidth="471.0">
+                    <TableView fx:id="tableNhanVien" layoutX="284.0" layoutY="64.0" prefHeight="414.0" prefWidth="554.0">
                   <columns>
                       <TableColumn fx:id="colHoten" prefWidth="162.40005493164062" text="Họ tên" />
                       <TableColumn fx:id="colDiachi" prefWidth="159.199951171875" text="Địa chỉ" />
@@ -37,45 +36,45 @@
                   </columns>
               </TableView>
       
-                    <Button layoutX="9.0" layoutY="385.0" onAction="#AddButton" prefHeight="26.0" prefWidth="61.0" text="Thêm" />
-              <Button layoutX="75.0" layoutY="385.0" onAction="#DeleteButton" prefHeight="26.0" prefWidth="62.0" text="Xóa" />
-              <Button layoutX="143.0" layoutY="385.0" onAction="#EditButton" prefHeight="26.0" prefWidth="61.0" text="Sửa" />
+                    <Button layoutX="9.0" layoutY="437.0" onAction="#AddButton" prefHeight="26.0" prefWidth="61.0" text="Thêm" />
+              <Button layoutX="143.0" layoutY="437.0" onAction="#DeleteButton" prefHeight="26.0" prefWidth="62.0" text="Xóa" />
+              <Button layoutX="77.0" layoutY="437.0" onAction="#EditButton" prefHeight="26.0" prefWidth="61.0" text="Sửa" />
             <Label layoutX="40.0" layoutY="68.0" text="Họ tên:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="112.0" text="Điện thoại:">
+            <Label layoutX="13.0" layoutY="121.0" text="Điện thoại:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="152.0" text="Giới tính:">
+            <Label layoutX="28.0" layoutY="174.0" text="Giới tính:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="41.0" layoutY="196.0" text="Địa chỉ:">
+            <Label layoutX="41.0" layoutY="222.0" text="Địa chỉ:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="24.0" layoutY="285.0" text="Tài khoản:">
+            <Label layoutX="24.0" layoutY="325.0" text="Tài khoản:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="332.0" text="Mật khẩu:">
+            <Label layoutX="25.0" layoutY="373.0" text="Mật khẩu:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <RadioButton fx:id="RadiobuttonNam" layoutX="102.0" layoutY="152.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="72.0" text="Nam">
+            <RadioButton fx:id="RadiobuttonNam" layoutX="103.0" layoutY="174.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="72.0" text="Nam">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="RadiobuttonNu" layoutX="200.0" layoutY="152.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="55.0" text="Nữ">
+            <RadioButton fx:id="RadiobuttonNu" layoutX="205.0" layoutY="174.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="55.0" text="Nữ">
                <font>
                   <Font size="14.0" />
                </font>
@@ -85,32 +84,32 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtDienthoai" layoutX="104.0" layoutY="108.0" prefHeight="27.0" prefWidth="156.0">
+            <TextField fx:id="txtDienthoai" layoutX="104.0" layoutY="117.0" prefHeight="27.0" prefWidth="156.0">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtDiachi" layoutX="104.0" layoutY="192.0" prefHeight="27.0" prefWidth="156.0">
+            <TextField fx:id="txtDiachi" layoutX="104.0" layoutY="218.0" prefHeight="27.0" prefWidth="156.0">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtTaikhoan" layoutX="104.0" layoutY="281.0" prefHeight="27.0" prefWidth="156.0">
+            <TextField fx:id="txtTaikhoan" layoutX="104.0" layoutY="321.0" prefHeight="27.0" prefWidth="156.0">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtMatkhau" layoutX="104.0" layoutY="328.0" prefHeight="27.0" prefWidth="156.0">
+            <TextField fx:id="txtMatkhau" layoutX="104.0" layoutY="369.0" prefHeight="27.0" prefWidth="156.0">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Label layoutX="41.0" layoutY="241.0" text="Lương:">
+            <Label layoutX="42.0" layoutY="275.0" text="Lương:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtLuong" layoutX="104.0" layoutY="237.0" prefHeight="27.0" prefWidth="156.0">
+            <TextField fx:id="txtLuong" layoutX="104.0" layoutY="271.0" prefHeight="27.0" prefWidth="156.0">
                <font>
                   <Font size="13.0" />
                </font>
@@ -120,14 +119,16 @@
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="441.0" layoutY="27.0" text="Danh sách nhân viên">
+            <Label layoutX="482.0" layoutY="27.0" text="Danh sách nhân viên">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Line endX="632.0" endY="9.15527380129788E-6" layoutX="132.0" startX="-132.00001525878906" startY="1.5258789289873675E-6" />
-            <Button layoutX="211.0" layoutY="385.0" onAction="#ExitButton" prefHeight="26.0" prefWidth="62.0" text="Thoát" />
+            <Button layoutX="211.0" layoutY="436.0" onAction="#ExitButton" prefHeight="26.0" prefWidth="62.0" text="Thoát" />
           </children>
       </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

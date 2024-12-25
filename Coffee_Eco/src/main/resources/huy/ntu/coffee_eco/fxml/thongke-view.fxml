@@ -7,39 +7,36 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="776.0" style="-fx-border-width: 2; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.ThongKeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" style="-fx-border-width: 2; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.ThongKeController">
    <top>
-      <AnchorPane prefHeight="74.0" prefWidth="600.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
+      <AnchorPane style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="324.0" layoutY="19.0" text="THỐNG KÊ" textFill="#ff6a05">
+            <Label layoutX="362.0" layoutY="4.0" text="THỐNG KÊ" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Line endX="629.0" layoutX="139.0" layoutY="73.0" startX="-139.0" stroke="#181818" />
          </children>
       </AnchorPane>
    </top>
    <center>
       <AnchorPane prefHeight="362.0" prefWidth="659.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableViewHoaDon" layoutX="7.0" layoutY="43.0" prefHeight="332.0" prefWidth="358.0">
+            <TableView fx:id="tableViewHoaDon" layoutX="7.0" layoutY="42.0" prefHeight="440.0" prefWidth="415.0">
               <columns>
                 <TableColumn fx:id="colNhanVien" prefWidth="146.40003061294556" text="Nhân viên" />
-                <TableColumn fx:id="colNgayTao" prefWidth="139.199951171875" text="Thời gian" />
-                  <TableColumn fx:id="colTongTien" prefWidth="73.60003662109375" text="Tổng tiền" />
+                <TableColumn fx:id="colNgayTao" prefWidth="170.3999481201172" text="Thời gian" />
+                  <TableColumn fx:id="colTongTien" prefWidth="95.199951171875" text="Tổng tiền" />
               </columns>
             </TableView>
-            <TableView fx:id="tableViewCTHD" layoutX="386.0" layoutY="43.0" prefHeight="333.0" prefWidth="382.0">
+            <TableView fx:id="tableViewCTHD" layoutX="431.0" layoutY="42.0" prefHeight="440.0" prefWidth="410.0">
               <columns>
-                <TableColumn fx:id="colTenMon" prefWidth="116.00006103515625" text="Tên món" />
-                <TableColumn fx:id="colSoLuong" prefWidth="42.399993896484375" text="SL" />
-                  <TableColumn fx:id="colDonGia" prefWidth="108.7999267578125" text="Đơn giá" />
-                  <TableColumn fx:id="colThanhTien" prefWidth="110.4000244140625" text="Thành tiền" />
+                <TableColumn fx:id="colTenMon" prefWidth="130.40011596679688" text="Tên món" />
+                <TableColumn fx:id="colSoLuong" prefWidth="50.4000244140625" text="SL" />
+                  <TableColumn fx:id="colDonGia" prefWidth="107.20001220703125" text="Đơn giá" />
+                  <TableColumn fx:id="colThanhTien" prefWidth="120.0" text="Thành tiền" />
               </columns>
             </TableView>
             <DatePicker fx:id="dpNgayTao" layoutX="7.0" layoutY="10.0" prefHeight="26.0" prefWidth="178.0" />
@@ -53,7 +50,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Label layoutX="520.0" layoutY="12.0" text="Chi tiết hóa đơn">
+            <Label layoutX="579.0" layoutY="12.0" text="Chi tiết hóa đơn">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -61,4 +58,7 @@
          </children>
       </AnchorPane>
    </center>
+   <bottom>
+      <AnchorPane prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

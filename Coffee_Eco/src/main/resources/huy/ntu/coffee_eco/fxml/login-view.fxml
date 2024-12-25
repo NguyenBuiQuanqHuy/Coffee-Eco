@@ -36,9 +36,9 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #F5F5DC;" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutY="94.0" prefHeight="24.0" prefWidth="292.0" text="Đăng Nhập" textAlignment="CENTER" textFill="#ffbe4f">
+            <Label alignment="CENTER" layoutY="94.0" prefHeight="24.0" prefWidth="292.0" text="Đăng Nhập" textAlignment="CENTER" textFill="#ffb200">
                <font>
                   <Font name="Verdana Bold Italic" size="19.0" />
                </font>
@@ -58,13 +58,13 @@
             </Label>
             <TextField fx:id="textFieldTK" layoutX="99.0" layoutY="139.0" />
             <PasswordField fx:id="matKhau" layoutX="99.0" layoutY="186.0" />
-            <Button layoutX="33.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleDangNhap" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
+            <Button layoutX="35.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleDangNhap" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             <Line endX="0.99993896484375" endY="-58.60000228881836" layoutY="58.0" startX="0.9999542236328125" startY="340.5999755859375" stroke="#8e8e8e" />
-            <CheckBox fx:id="checkBoxMK" layoutX="99.0" layoutY="219.0" mnemonicParsing="false" text="Hiện mật khẩu" />
+            <CheckBox fx:id="checkBoxMK" layoutX="99.0" layoutY="223.0" mnemonicParsing="false" text="Hiện mật khẩu" />
             <TextField fx:id="textFieldMK" layoutX="99.0" layoutY="186.0" visible="false" />
          </children>
       </AnchorPane>

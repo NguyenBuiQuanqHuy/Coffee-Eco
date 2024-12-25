@@ -46,6 +46,9 @@ public class TaiKhoanController {
                 matKhau.setText(textFieldMK.getText());
             }
         });
+        textFieldMK.textProperty().addListener((observable, oldValue, newValue) -> {
+            matKhau.setText(newValue);
+        });
     }
 
 
