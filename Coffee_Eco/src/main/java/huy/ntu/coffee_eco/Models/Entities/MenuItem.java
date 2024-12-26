@@ -15,53 +15,25 @@ public class MenuItem {
         this.hinhAnh = hinhAnh;
     }
 
-    public String getTenLoaiHang() {
-        return tenLoaiHang;
-    }
+    public int getId() { return id; }
 
-    public void setTenLoaiHang(String tenLoaiHang) {
-        this.tenLoaiHang = tenLoaiHang;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public int getId() {
-        return id;
-    }
+    public int getLoaiHang() { return loaiHang; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setLoaiHang(int loaiHang) { this.loaiHang = loaiHang; }
 
-    public int getLoaiHang() {
-        return loaiHang;
-    }
+    public String getTenHang() { return tenHang; }
 
-    public void setLoaiHang(int loaiHang) {
-        this.loaiHang = loaiHang;
-    }
+    public void setTenHang(String tenHang) { this.tenHang = tenHang; }
 
-    public String getTenHang() {
-        return tenHang;
-    }
+    public float getGia() { return gia; }
 
-    public void setTenHang(String tenHang) {
-        this.tenHang = tenHang;
-    }
+    public void setGia(float gia) { this.gia = gia; }
 
-    public float getGia() {
-        return gia;
-    }
+    public String getHinhAnh() { return hinhAnh; }
 
-    public void setGia(float gia) {
-        this.gia = gia;
-    }
-
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
+    public void setHinhAnh(String hinhAnh) { this.hinhAnh = hinhAnh; }
 
     @Override
     public String toString() {

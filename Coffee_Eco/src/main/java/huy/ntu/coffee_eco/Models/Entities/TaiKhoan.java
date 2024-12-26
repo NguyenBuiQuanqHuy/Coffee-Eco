@@ -5,9 +5,6 @@ public class TaiKhoan {
     String tenTK,matkhau;
     NhanVien nhanVien;
 
-    public TaiKhoan() {
-    }
-
     public NhanVien getNhanVien() {
         return nhanVien;
     }

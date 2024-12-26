@@ -22,7 +22,6 @@ public class TaiKhoanDAL {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int maNV = resultSet.getInt("MaNV");
-
                 NhanVien nhanVien = getNhanVienByMaNV(maNV);
 
                 taiKhoan.setNhanVien(nhanVien);

@@ -9,24 +9,13 @@ public class LoaiHang {
         this.tenloaihang = tenloaihang;
     }
 
-    public LoaiHang() {
-    }
+    public int getMaloaihang() { return maloaihang; }
 
-    public int getMaloaihang() {
-        return maloaihang;
-    }
+    public void setMaloaihang(int maloaihang) { this.maloaihang = maloaihang; }
 
-    public void setMaloaihang(int maloaihang) {
-        this.maloaihang = maloaihang;
-    }
+    public String getTenloaihang() { return tenloaihang; }
 
-    public String getTenloaihang() {
-        return tenloaihang;
-    }
-
-    public void setTenloaihang(String tenloaihang) {
-        this.tenloaihang = tenloaihang;
-    }
+    public void setTenloaihang(String tenloaihang) { this.tenloaihang = tenloaihang; }
 
     @Override
     public String toString() {

@@ -10,8 +10,4 @@ public class CurrentUser {
     public static void setCurrentUser(TaiKhoan user) {
         currentUser = user;
     }
-
-    public static boolean isLoggedIn() {
-        return currentUser != null;
-    }
 }

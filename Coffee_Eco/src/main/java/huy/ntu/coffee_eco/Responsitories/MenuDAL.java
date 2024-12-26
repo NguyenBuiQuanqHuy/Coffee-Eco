@@ -51,7 +51,6 @@ public class MenuDAL {
     }
 
 
-
     public void loadLoaiHang(ObservableList<LoaiHang> loaiHangList){
         try {
             Connection conn = DSUntils.DBConnect();

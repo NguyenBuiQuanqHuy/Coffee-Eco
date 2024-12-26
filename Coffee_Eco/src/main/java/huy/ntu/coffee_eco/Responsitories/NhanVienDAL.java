@@ -7,13 +7,12 @@ import java.sql.*;
 
 
 public class NhanVienDAL {
-    public boolean AddNhanVien(NhanVien nhanVien) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
+
+    public void AddNhanVien(NhanVien nhanVien) {
         try {
-            conn = DSUntils.DBConnect();
+            Connection conn = DSUntils.DBConnect();
             String sql = "INSERT INTO nhanvien (TenNV, DiaChi, GioiTinh, DienThoai,Luong,TenTK, MatKhau) VALUES (?, ?, ?, ?, ?, ?,?)";
-            stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, nhanVien.getTen());
             stmt.setString(2, nhanVien.getDiachi());
             stmt.setString(3, nhanVien.getGioitinh());
@@ -21,7 +20,7 @@ public class NhanVienDAL {
             stmt.setFloat(5,nhanVien.getLuong());
             stmt.setString(6, nhanVien.getTaikhoan());
             stmt.setString(7, nhanVien.getMatkhau());
-            int result = stmt.executeUpdate();
+            stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys != null && generatedKeys.next()) {
@@ -29,12 +28,10 @@ public class NhanVienDAL {
                 nhanVien.setMaNV(generatedId);
             }
             DSUntils.CloseConnect(conn);
-            return result>0;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
 
         }
-        return false;
     }
 
     public void LoadNhanVien(ObservableList<NhanVien> nhanVienList){
@@ -66,7 +63,7 @@ public class NhanVienDAL {
         }
     }
 
-    public void suaNV(NhanVien nv) {
+    public void EditNhanVien(NhanVien nv) {
         try {
             Connection conn = DSUntils.DBConnect();
             String query = "UPDATE nhanvien SET TenNV=?, DiaChi=?, GioiTinh=?, DienThoai=?, Luong=?, TenTK=?, MatKhau=? WHERE MaNV=?";
@@ -86,7 +83,7 @@ public class NhanVienDAL {
         }
     }
 
-    public void xoaNV(int maNV) {
+    public void DeleteNhanVien(int maNV) {
         try {
             Connection conn = DSUntils.DBConnect();
             String updateQuery = "UPDATE hoadon SET MaNV = 0 WHERE MaNV = ?";

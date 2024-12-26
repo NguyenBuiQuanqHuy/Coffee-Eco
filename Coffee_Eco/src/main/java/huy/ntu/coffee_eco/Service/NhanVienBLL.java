@@ -8,11 +8,10 @@ import javafx.collections.ObservableList;
 public class NhanVienBLL {
     NhanVienDAL nhanVienDAL=new NhanVienDAL();
 
-    public boolean themNV(NhanVien nv){
+    public void themNV(NhanVien nv){
         String matkhauHash = ComonUntils.hashPassword(nv.getMatkhau());
         nv.setMatkhau(matkhauHash);
-        boolean kq = nhanVienDAL.AddNhanVien(nv);
-        return kq;
+        nhanVienDAL.AddNhanVien(nv);
     }
 
     public void loadNhanVienData(ObservableList<NhanVien> nhanVienList) {
@@ -22,10 +21,9 @@ public class NhanVienBLL {
     public void suaNV(NhanVien nv){
         String matkhauHash = ComonUntils.hashPassword(nv.getMatkhau());
         nv.setMatkhau(matkhauHash);
-        nhanVienDAL.suaNV(nv);
+        nhanVienDAL.EditNhanVien(nv);
     }
     public void xoaNV(int maNV) {
-        nhanVienDAL.xoaNV(maNV);
+        nhanVienDAL.DeleteNhanVien(maNV);
     }
-
 }

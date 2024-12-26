@@ -54,10 +54,10 @@
                   <Image url="@../../../../../../../../../../Menu/caphesua.png" />
                </image>
             </ImageView>
-            <Button layoutX="20.0" layoutY="367.0" mnemonicParsing="false" onAction="#ChonAnh" text="Chọn ảnh" />
-            <Button layoutX="176.0" layoutY="366.0" mnemonicParsing="false" onAction="#Them" prefHeight="26.0" prefWidth="64.0" text="Thêm" textAlignment="CENTER" />
-            <Button layoutX="21.0" layoutY="412.0" mnemonicParsing="false" onAction="#CapNhat" text="Cập nhật" textAlignment="CENTER" />
-            <Button layoutX="100.0" layoutY="411.0" mnemonicParsing="false" onAction="#Xoa" prefHeight="26.0" prefWidth="67.0" text="Xóa" />
+            <Button layoutX="20.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleChonAnh" text="Chọn ảnh" />
+            <Button layoutX="176.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleThemMenu" prefHeight="26.0" prefWidth="64.0" text="Thêm" textAlignment="CENTER" />
+            <Button layoutX="21.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleCapNhatMenu" text="Cập nhật" textAlignment="CENTER" />
+            <Button layoutX="100.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleXoaMenu" prefHeight="26.0" prefWidth="67.0" text="Xóa" />
             <Button layoutX="177.0" layoutY="412.0" mnemonicParsing="false" onAction="#Thoat" prefHeight="26.0" prefWidth="62.0" text="Thoát" textAlignment="CENTER" />
             <Label layoutX="74.0" layoutY="14.0" text="Thông tin menu">
                <font>

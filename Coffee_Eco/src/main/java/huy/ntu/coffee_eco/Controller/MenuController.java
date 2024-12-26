@@ -91,7 +91,7 @@ public class MenuController {
         comboBoxLoai.setItems(loaiHangList);
     }
 
-    public void ChonAnh(){
+    public void handleChonAnh(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Hình ảnh", "*.png", "*.jpg", "*.jpeg")
@@ -112,7 +112,7 @@ public class MenuController {
             }
     }
 
-    public void Them(){
+    public void handleThemMenu(){
             String tenHang = textFieldName.getText().trim();
             String giaStr = textFieldGia.getText().trim();
             LoaiHang loaiHang = comboBoxLoai.getValue();
@@ -140,7 +140,7 @@ public class MenuController {
                 savedImagePath = null;
     }
 
-    public void CapNhat(){
+    public void handleCapNhatMenu(){
         MenuItem selectedItem = tableViewMenu.getSelectionModel().getSelectedItem();
         if (selectedItem == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn món cần sửa!", ButtonType.OK);
@@ -176,7 +176,7 @@ public class MenuController {
         savedImagePath = null;
     }
 
-    public void Xoa() {
+    public void handleXoaMenu() {
         MenuItem selectedItem = tableViewMenu.getSelectionModel().getSelectedItem();
         if (selectedItem == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn món cần xóa!", ButtonType.OK);

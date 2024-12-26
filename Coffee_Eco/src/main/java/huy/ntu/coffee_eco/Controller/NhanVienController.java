@@ -68,7 +68,7 @@ public class NhanVienController {
         tableNhanVien.setItems(nhanVienList);
     }
 
-    public void AddButton() {
+    public void handleThemNV() {
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
@@ -92,10 +92,8 @@ public class NhanVienController {
         }
 
         String gioitinh = "";
-        if (RadiobuttonNam.isSelected()) {
-            gioitinh = "Nam";
-        } else if (RadiobuttonNu.isSelected()) {
-            gioitinh = "Nữ";
+        if (RadiobuttonNam.isSelected()) { gioitinh = "Nam";
+        } else if (RadiobuttonNu.isSelected()) { gioitinh = "Nữ";
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng chọn giới tính!", ButtonType.OK);
             alert.show();
@@ -109,10 +107,8 @@ public class NhanVienController {
             return;
         }
 
-
         NhanVien nv = new NhanVien(ten, diachi, gioitinh, dienthoai, luong, tenTK, matkhau);
-        boolean result = nhanVienBLL.themNV(nv);
-        if (result) {
+        nhanVienBLL.themNV(nv);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Thêm nhân viên thành công", ButtonType.OK);
             alert.show();
             nhanVienList.add(nv);
@@ -125,22 +121,16 @@ public class NhanVienController {
             txtTaikhoan.clear();
             txtMatkhau.clear();
             ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Thêm nhân viên thất bại", ButtonType.OK);
-            alert.show();
-        }
     }
 
 
-    public void EditButton() {
+    public void handleSuaNV() {
         NhanVien selectedNhanVien = tableNhanVien.getSelectionModel().getSelectedItem();
         if (selectedNhanVien == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn nhân viên để sửa!", ButtonType.OK);
             alert.show();
             return;
         }
-
-
 
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
@@ -207,7 +197,7 @@ public class NhanVienController {
     }
 
 
-    public void DeleteButton() {
+    public void handleXoaNV() {
         NhanVien selectedNhanVien = tableNhanVien.getSelectionModel().getSelectedItem();
         if (selectedNhanVien == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Vui lòng chọn nhân viên để xóa!", ButtonType.OK);
@@ -227,7 +217,7 @@ public class NhanVienController {
         }
     }
 
-    public void ExitButton() throws IOException {
+    public void Thoat() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) txtTaikhoan.getScene().getWindow();
