@@ -200,11 +200,8 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) comboBoxLoai.getScene().getWindow();
-        Stage newStage = new Stage();
-        newStage.setScene(loginScene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        currentStage.close();
-        newStage.show();
+        currentStage.setScene(loginScene);
+        currentStage.show();
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {

@@ -74,11 +74,8 @@ public class TaiKhoanController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
         Scene thanhToanScene = new Scene(loader.load());
         Stage currentStage = (Stage) textFieldTK.getScene().getWindow();
-        Stage newStage = new Stage();
-        newStage.setScene(thanhToanScene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        currentStage.close();
-        newStage.show();
+        currentStage.setScene(thanhToanScene);
+        currentStage.show();
     }
 
     private void showAlert(String message, Alert.AlertType alertType) {

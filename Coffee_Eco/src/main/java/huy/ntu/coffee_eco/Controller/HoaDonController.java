@@ -229,33 +229,25 @@ public class HoaDonController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thongke-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
-        Stage newStage = new Stage();
-        newStage.setScene(loginScene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        currentStage.close();
-        newStage.show();
+        currentStage.setScene(loginScene);
+        currentStage.show();
     }
+
 
     public void QuanLyMenu() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/menu-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
-        Stage newStage = new Stage();
-        newStage.setScene(loginScene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        currentStage.close();
-        newStage.show();
+        currentStage.setScene(loginScene);
+        currentStage.show();
     }
 
     public void QuanLyNhanVien() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/nhanvien-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
-        Stage newStage = new Stage();
-        newStage.setScene(loginScene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        currentStage.close();
-        newStage.show();
+        currentStage.setScene(loginScene);
+        currentStage.show();
     }
 
     private void ThanhTien() {
@@ -287,11 +279,8 @@ public class HoaDonController {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/login-view.fxml"));
             Scene loginScene = new Scene(loader.load());
             Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
-            Stage newStage = new Stage();
-            newStage.setScene(loginScene);
-            newStage.initStyle(StageStyle.UNDECORATED);
-            currentStage.close();
-            newStage.show();
+            currentStage.setScene(loginScene);
+            currentStage.show();
         }
     }
 
