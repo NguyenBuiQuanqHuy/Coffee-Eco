@@ -11,9 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -39,7 +37,6 @@ public class TaiKhoanController {
                 matKhau.setVisible(false);
                 textFieldMK.setVisible(true);
                 textFieldMK.setText(matKhau.getText());
-                //textFieldMK.requestFocus();
             } else {
                 matKhau.setVisible(true);
                 textFieldMK.setVisible(false);

@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
@@ -45,9 +44,9 @@ public class HoaDonController {
 
     HoaDonBLL hoaDonBLL=new HoaDonBLL();
     private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
-
+    TaiKhoan currentUser = CurrentUser.getCurrentUser();
     public void initialize() {
-        TaiKhoan currentUser = CurrentUser.getCurrentUser();
+
         if (currentUser == null || currentUser.getNhanVien() == null) {
             System.out.println("CurrentUser hoặc nhân viên chưa được khởi tạo!");
         } else {
@@ -235,6 +234,14 @@ public class HoaDonController {
 
 
     public void QuanLyMenu() throws IOException {
+        if (currentUser == null || !currentUser.getTenTK().equalsIgnoreCase("admin")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Quyền truy cập bị từ chối");
+            alert.setHeaderText("Bạn không có quyền truy cập");
+            alert.setContentText("Chức năng này chỉ dành cho Admin.");
+            alert.showAndWait();
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/menu-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
@@ -243,6 +250,15 @@ public class HoaDonController {
     }
 
     public void QuanLyNhanVien() throws IOException {
+        if (currentUser == null || !currentUser.getTenTK().equalsIgnoreCase("admin")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Quyền truy cập bị từ chối");
+            alert.setHeaderText("Bạn không có quyền truy cập");
+            alert.setContentText("Chức năng này chỉ dành cho Admin.");
+            alert.showAndWait();
+            return;
+        }
+        
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/nhanvien-view.fxml"));
         Scene loginScene = new Scene(loader.load());
         Stage currentStage = (Stage) labelTenNV.getScene().getWindow();

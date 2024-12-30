@@ -29,23 +29,6 @@ public class HoaDonDAL {
         }
     }
 
-    public String getTenLoaiHang(int maLoaiHang) {
-        String tenLoaiHang = "Không xác định";
-        try {
-            Connection conn = DSUntils.DBConnect();
-            String query = "SELECT TenLoaiHang FROM loaihang WHERE MaLoaiHang = ?";
-            PreparedStatement statement = conn.prepareStatement(query);
-            statement.setInt(1, maLoaiHang);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                tenLoaiHang = resultSet.getString("TenLoaiHang");
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return tenLoaiHang;
-    }
-
     public void loadMenu(List<MenuItem> menuItems,int maLoaiHang){
         String query = "SELECT MaSP, TenSP, Gia, HinhAnh FROM menu WHERE LoaiHang = ?";
         try {
@@ -133,6 +116,5 @@ public class HoaDonDAL {
             throw new RuntimeException(e);
         }
     }
-
 
 }

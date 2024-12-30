@@ -15,10 +15,6 @@ public class HoaDonBLL {
         hoaDonDAL.loadLoaiHang(loaiHangs);
     }
 
-    public String getTenLoaiHang(int maloaihang){
-        return hoaDonDAL.getTenLoaiHang(maloaihang);
-    }
-
     public void LoadMenu(List<MenuItem> menuItems,int maLoaiHang){
         hoaDonDAL.loadMenu(menuItems,maLoaiHang);
     }
