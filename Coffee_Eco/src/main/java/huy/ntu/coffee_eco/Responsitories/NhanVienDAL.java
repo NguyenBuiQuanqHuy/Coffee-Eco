@@ -7,7 +7,6 @@ import java.sql.*;
 
 
 public class NhanVienDAL {
-
     public void AddNhanVien(NhanVien nhanVien) {
         try {
             Connection conn = DSUntils.DBConnect();

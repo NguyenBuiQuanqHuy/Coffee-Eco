@@ -70,7 +70,6 @@ public class HoaDonDAL {
         return tenSP;
     }
 
-
     public int themHoaDon(HoaDon hoaDon) {
         String query = "INSERT INTO hoadon (MaNV, NgayTao, TongTien ) VALUES (?, ?,?)";
         try {
@@ -116,5 +115,4 @@ public class HoaDonDAL {
             throw new RuntimeException(e);
         }
     }
-
 }
