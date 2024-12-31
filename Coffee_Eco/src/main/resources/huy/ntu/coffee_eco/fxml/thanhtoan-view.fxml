@@ -39,6 +39,13 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Button>
          </children></AnchorPane>
    </bottom>
