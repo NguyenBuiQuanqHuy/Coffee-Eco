@@ -27,7 +27,7 @@ public class MenuController {
     @FXML
     private ComboBox<LoaiHang> comboBoxLoai;
     @FXML
-    private TextField textFieldName,textFieldGia;
+    private TextField textFieldName,textFieldGia,textFieldTimKiem;
     @FXML
     private TableView<MenuItem> tableViewMenu;
     @FXML
@@ -219,6 +219,21 @@ public class MenuController {
                 tableViewMenu.refresh();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Xóa món thành công", ButtonType.OK);
                 alert.show();
+        }
+    }
+
+    public void handleTimKiem(){
+        String tenMenu = textFieldTimKiem.getText().toString().trim().toLowerCase();
+        if (tenMenu.isEmpty()) {
+            tableViewMenu.setItems(menuList);
+        } else {
+            ObservableList<MenuItem> filteredList = FXCollections.observableArrayList();
+            for (MenuItem menuItem : menuList) {
+                if (menuItem.getTenHang().toLowerCase().contains(tenMenu)) {
+                    filteredList.add(menuItem);
+                }
+            }
+            tableViewMenu.setItems(filteredList);
         }
     }
 

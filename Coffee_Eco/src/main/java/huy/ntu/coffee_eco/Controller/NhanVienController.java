@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 public class NhanVienController {
 
     @FXML
-    private TextField txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong;
+    private TextField txtHoten, txtDienthoai, txtDiachi, txtTaikhoan, txtMatkhau, txtLuong, textFieldTimKiem;
 
     @FXML
     private RadioButton RadiobuttonNam, RadiobuttonNu;
@@ -89,6 +89,23 @@ public class NhanVienController {
             RadiobuttonNu.setSelected(true);
         }
     }
+
+    public void handleTimKiem(){
+        String tenNV = textFieldTimKiem.getText().toString().trim();
+
+        if (tenNV.isEmpty()) {
+            tableNhanVien.setItems(nhanVienList);
+        } else {
+            ObservableList<NhanVien> filteredList = FXCollections.observableArrayList();
+            for (NhanVien nhanVien : nhanVienList) {
+                if (nhanVien.getTen().contains(tenNV)) {
+                    filteredList.add(nhanVien);
+                }
+            }
+            tableNhanVien.setItems(filteredList);
+        }
+    }
+
 
     public void handleThemNV() {
         String ten = txtHoten.getText().trim();

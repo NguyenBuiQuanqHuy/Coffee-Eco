@@ -12,6 +12,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -25,9 +26,7 @@ public class TaiKhoanController {
     private CheckBox checkBoxMK;
     @FXML
     private TextField textFieldMK;
-
-    TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
-
+    private TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
 
     public void initialize() {
         textFieldMK.setVisible(false);
@@ -48,7 +47,6 @@ public class TaiKhoanController {
         });
     }
 
-
     public void handleDangNhap() throws IOException {
         String taikhoan = textFieldTK.getText().trim();
         String matkhau = matKhau.getText().trim();
@@ -67,13 +65,23 @@ public class TaiKhoanController {
                 showAlert("Sai tài khoản hoặc mật khẩu", Alert.AlertType.ERROR);
             }
     }
+
     private void DangNhapThanhCong() throws IOException {
+        // Tạo màn hình mới
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
         Scene thanhToanScene = new Scene(loader.load());
+
+        // Lấy stage hiện tại và đóng nó
         Stage currentStage = (Stage) textFieldTK.getScene().getWindow();
-        currentStage.setScene(thanhToanScene);
-        currentStage.show();
+        currentStage.close();  // Đóng màn hình hiện tại
+
+        // Hiển thị màn hình mới
+        Stage newStage = new Stage();
+        newStage.initStyle(StageStyle.UNDECORATED);
+        newStage.setScene(thanhToanScene);
+        newStage.show();
     }
+
 
     private void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

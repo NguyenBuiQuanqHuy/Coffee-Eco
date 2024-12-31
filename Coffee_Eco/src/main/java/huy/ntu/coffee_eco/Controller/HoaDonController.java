@@ -15,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
@@ -302,10 +304,13 @@ public class HoaDonController {
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
         if (result == ButtonType.OK) {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/login-view.fxml"));
-            Scene loginScene = new Scene(loader.load());
+            Scene thanhToanScene = new Scene(loader.load());
             Stage currentStage = (Stage) labelTenNV.getScene().getWindow();
-            currentStage.setScene(loginScene);
-            currentStage.show();
+            currentStage.close();
+            Stage newStage = new Stage();
+            newStage.initStyle(StageStyle.UNDECORATED);
+            newStage.setScene(thanhToanScene);
+            newStage.show();
         }
     }
 
