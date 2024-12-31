@@ -6,8 +6,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="550.0" prefWidth="850.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.NhanVienController">
@@ -18,6 +21,9 @@
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
          </children>
       </AnchorPane>
@@ -26,7 +32,7 @@
       <AnchorPane minWidth="-Infinity" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
           <children>
       
-                    <TableView fx:id="tableNhanVien" layoutX="284.0" layoutY="64.0" prefHeight="414.0" prefWidth="554.0">
+                    <TableView fx:id="tableNhanVien" layoutX="284.0" layoutY="64.0" prefHeight="432.0" prefWidth="554.0">
                   <columns>
                       <TableColumn fx:id="colHoten" prefWidth="162.40005493164062" text="Họ tên" />
                       <TableColumn fx:id="colDiachi" prefWidth="159.199951171875" text="Địa chỉ" />
@@ -34,17 +40,24 @@
                   <TableColumn fx:id="colDienthoai" prefWidth="109.5999755859375" text="Liên hệ" />
                   <TableColumn fx:id="colLuong" minWidth="20.0" prefWidth="75.0" text="Lương" />
                   </columns>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect>
               </TableView>
       
-                    <Button layoutX="9.0" layoutY="437.0" onAction="#handleThemNV" prefHeight="26.0" prefWidth="61.0" text="Thêm">
+                    <Button layoutX="27.0" layoutY="428.0" onAction="#handleThemNV" prefHeight="26.0" prefWidth="70.0" text="Thêm">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-              <Button layoutX="143.0" layoutY="437.0" onAction="#handleXoaNV" prefHeight="26.0" prefWidth="62.0" text="Xóa">
+              <Button layoutX="189.0" layoutY="428.0" onAction="#handleXoaNV" prefHeight="26.0" prefWidth="70.0" text="Xóa">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-              <Button layoutX="77.0" layoutY="437.0" onAction="#handleSuaNV" prefHeight="26.0" prefWidth="61.0" text="Sửa">
+              <Button layoutX="108.0" layoutY="428.0" onAction="#handleSuaNV" prefHeight="26.0" prefWidth="70.0" text="Sửa">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
@@ -133,11 +146,19 @@
                   <Font name="System Bold Italic" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="211.0" layoutY="436.0" onAction="#Thoat" prefHeight="26.0" prefWidth="62.0" text="Thoát">
+            <Button layoutX="27.0" layoutY="464.0" onAction="#Thoat" prefHeight="26.0" prefWidth="234.0" text="Thoát">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <TextField fx:id="textFieldTimKiem" layoutX="497.0" layoutY="26.0" prefHeight="26.0" prefWidth="253.0" promptText="Nhập tên nhân viên" />
+            <TextField fx:id="textFieldTimKiem" layoutX="497.0" layoutY="26.0" prefHeight="26.0" prefWidth="253.0" promptText="Nhập tên nhân viên">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </TextField>
             <Button layoutX="767.0" layoutY="26.0" onAction="#handleTimKiem" prefHeight="26.0" prefWidth="70.0" text="Tìm kiếm">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -146,7 +167,4 @@
           </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>

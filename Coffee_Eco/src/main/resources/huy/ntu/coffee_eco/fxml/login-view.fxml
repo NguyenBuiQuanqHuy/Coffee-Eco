@@ -10,10 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.TaiKhoanController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.TaiKhoanController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="228.0" style="-fx-background-color: #b4fec2;" BorderPane.alignment="CENTER">
          <children>
@@ -27,12 +28,22 @@
                   <Font name="Times New Roman" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="215.0" text="Nơi chữa lành tâm hồn" textFill="#b99d0f">
+            <Label layoutX="25.0" layoutY="215.0" text="Nơi chữa lành tâm hồn" textFill="#ffb200">
                <font>
                   <Font name="Verdana Bold Italic" size="14.0" />
                </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
             </Label>
          </children>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.686274528503418" green="0.686274528503418" blue="0.686274528503418" />
+               </color>
+            </InnerShadow>
+         </effect>
       </AnchorPane>
    </left>
    <center>
@@ -56,17 +67,48 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldTK" layoutX="99.0" layoutY="139.0" />
-            <PasswordField fx:id="matKhau" layoutX="99.0" layoutY="186.0" />
+            <TextField fx:id="textFieldTK" layoutX="99.0" layoutY="139.0">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect></TextField>
+            <PasswordField fx:id="matKhau" layoutX="99.0" layoutY="186.0">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect></PasswordField>
             <Button layoutX="35.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleDangNhap" prefHeight="26.0" prefWidth="217.0" style="-fx-background-color: #64cfdd;" text="Đăng Nhập" textFill="#fafafa">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.31578946113586426" green="0.31578946113586426" blue="0.31578946113586426" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </Button>
             <Line endX="0.99993896484375" endY="-58.60000228881836" layoutY="58.0" startX="0.9999542236328125" startY="340.5999755859375" stroke="#8e8e8e" />
             <CheckBox fx:id="checkBoxMK" layoutX="99.0" layoutY="223.0" mnemonicParsing="false" text="Hiện mật khẩu" />
             <TextField fx:id="textFieldMK" layoutX="99.0" layoutY="186.0" visible="false" />
          </children>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.686274528503418" green="0.686274528503418" blue="0.686274528503418" />
+               </color>
+            </InnerShadow>
+         </effect>
       </AnchorPane>
    </center>
+   <effect>
+      <InnerShadow />
+   </effect>
 </BorderPane>

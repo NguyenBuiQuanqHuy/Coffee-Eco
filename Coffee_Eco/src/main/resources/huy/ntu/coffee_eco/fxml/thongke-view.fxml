@@ -5,8 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" style="-fx-border-width: 2; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.ThongKeController">
@@ -17,6 +20,9 @@
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
          </children>
       </AnchorPane>
@@ -24,22 +30,43 @@
    <center>
       <AnchorPane prefHeight="362.0" prefWidth="659.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableViewHoaDon" layoutX="7.0" layoutY="42.0" prefHeight="440.0" prefWidth="415.0">
+            <TableView fx:id="tableViewHoaDon" layoutX="7.0" layoutY="42.0" prefHeight="458.0" prefWidth="415.0">
               <columns>
                 <TableColumn fx:id="colNhanVien" prefWidth="146.40003061294556" text="Nhân viên" />
                 <TableColumn fx:id="colNgayTao" prefWidth="170.3999481201172" text="Thời gian" />
                   <TableColumn fx:id="colTongTien" prefWidth="95.199951171875" text="Tổng tiền" />
               </columns>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </TableView>
-            <TableView fx:id="tableViewCTHD" layoutX="431.0" layoutY="42.0" prefHeight="440.0" prefWidth="410.0">
+            <TableView fx:id="tableViewCTHD" layoutX="431.0" layoutY="42.0" prefHeight="458.0" prefWidth="410.0">
               <columns>
                 <TableColumn fx:id="colTenMon" prefWidth="130.40011596679688" text="Tên món" />
                 <TableColumn fx:id="colSoLuong" prefWidth="50.4000244140625" text="SL" />
                   <TableColumn fx:id="colDonGia" prefWidth="107.20001220703125" text="Đơn giá" />
                   <TableColumn fx:id="colThanhTien" prefWidth="120.0" text="Thành tiền" />
               </columns>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </TableView>
-            <DatePicker fx:id="dpNgayTao" layoutX="7.0" layoutY="10.0" prefHeight="26.0" prefWidth="233.0" promptText="Nhập ngày tạo hóa đơn" />
+            <DatePicker fx:id="dpNgayTao" layoutX="7.0" layoutY="10.0" prefHeight="26.0" prefWidth="233.0" promptText="Nhập ngày tạo hóa đơn">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect></DatePicker>
             <Button layoutX="258.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleThongKe" prefHeight="30.0" prefWidth="76.0" text="Thống kê">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -58,7 +85,11 @@
          </children>
       </AnchorPane>
    </center>
-   <bottom>
-      <AnchorPane prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER" />
-   </bottom>
+   <effect>
+      <InnerShadow>
+         <color>
+            <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+         </color>
+      </InnerShadow>
+   </effect>
 </BorderPane>

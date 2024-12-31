@@ -6,6 +6,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -61,23 +66,56 @@
                      </stops>
                   </LinearGradient>
                </textFill>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
             <Label fx:id="labelTenNV" layoutX="635.0" layoutY="-4.0" prefHeight="36.0" prefWidth="216.0" text="Tên người dùng" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
             <Label layoutX="635.0" layoutY="18.0" onMouseClicked="#DangXuat" prefHeight="36.0" prefWidth="86.0" text="Đăng xuất" textFill="#ff0909">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </Label>
             <Label layoutX="635.0" layoutY="41.0" onMouseClicked="#Thoat" prefHeight="36.0" prefWidth="54.0" text="Thoát" textAlignment="CENTER" textFill="#ff0909">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </Label>
          </children>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+               </color>
+            </InnerShadow>
+         </effect>
       </AnchorPane>
    </top>
    <left>
@@ -88,7 +126,14 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.7157894968986511" green="0.7157894968986511" blue="0.7157894968986511" />
+                     </color>
+                  </InnerShadow>
+               </effect></Rectangle>
             <Label layoutX="22.0" layoutY="50.0" text="Loại: ">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -136,12 +181,12 @@
                   <Font name="System Bold" size="12.0" />
                </font></TextField>
             <ImageView fx:id="imageSP" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="221.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleThemSP" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: #33CC99;" text="Thêm" textFill="WHITE">
+            <Button layoutX="221.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleThemSP" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: #33CC99; -fx-border-color: #afafaf;" text="Thêm" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="220.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleXoaSP" prefHeight="50.0" prefWidth="98.0" style="-fx-background-color: #33CC99;" text="Xóa" textFill="WHITE">
+            <Button layoutX="220.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleXoaSP" prefHeight="50.0" prefWidth="98.0" style="-fx-background-color: #33CC99; -fx-border-color: #afafaf;" text="Xóa" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -157,16 +202,30 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
-            <TableView fx:id="tableViewCTHD" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="500.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.7176470756530762" green="0.7176470756530762" blue="0.7176470756530762" />
+                     </color>
+                  </InnerShadow>
+               </effect></Rectangle>
+            <TableView fx:id="tableViewCTHD" layoutX="6.0" layoutY="40.0" prefHeight="239.0" prefWidth="496.0">
                <columns>
                   <TableColumn fx:id="colMenu" prefWidth="177.60003662109375" text="Tên nước uống" />
                   <TableColumn fx:id="colSoLuong" minWidth="0.0" prefWidth="83.99993896484375" text="Số lượng" />
                   <TableColumn fx:id="colGia" minWidth="0.0" prefWidth="119.199951171875" text="Đơn giá" />
                   <TableColumn fx:id="colThanhTien" prefWidth="124.800048828125" text="Giá" />
                </columns>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6549019813537598" green="0.6549019813537598" blue="0.6549019813537598" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </TableView>
-            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleThanhToan" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #33CC99;" text="Thanh toán" textFill="WHITE">
+            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleThanhToan" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #33CC99; -fx-border-color: #afafaf;" text="Thanh toán" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -184,4 +243,7 @@
          </children>
       </AnchorPane>
    </center>
+   <effect>
+      <InnerShadow />
+   </effect>
 </BorderPane>
