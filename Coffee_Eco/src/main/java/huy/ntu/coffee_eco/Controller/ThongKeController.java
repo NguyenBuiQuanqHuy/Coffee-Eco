@@ -21,21 +21,21 @@ import java.time.LocalDate;
 
 public class ThongKeController {
     @FXML
-    DatePicker dpNgayTao;
+    private DatePicker dpNgayTao;
     @FXML
-    TableView<HoaDon> tableViewHoaDon;
+    private TableView<HoaDon> tableViewHoaDon;
     @FXML
-    TableColumn<HoaDon,Integer> colNhanVien;
+    private TableColumn<HoaDon,Integer> colNhanVien;
     @FXML
-    TableColumn<HoaDon, Timestamp> colNgayTao;
+    private TableColumn<HoaDon, Timestamp> colNgayTao;
     @FXML
-    TableColumn<HoaDon, Float> colTongTien;
+    private TableColumn<HoaDon, Float> colTongTien;
     @FXML
-    TableView<ChiTietHoaDon> tableViewCTHD;
+    private TableView<ChiTietHoaDon> tableViewCTHD;
     @FXML
-    TableColumn<ChiTietHoaDon,Integer> colTenMon,colSoLuong;
+    private TableColumn<ChiTietHoaDon,Integer> colTenMon,colSoLuong;
     @FXML
-    TableColumn<ChiTietHoaDon,Float> colDonGia,colThanhTien;
+    private TableColumn<ChiTietHoaDon,Float> colDonGia,colThanhTien;
     private ThongKeBLL thongKeBLL=new ThongKeBLL();
     private ObservableList<HoaDon> hoaDons= FXCollections.observableArrayList();
     private ObservableList<ChiTietHoaDon> CTHDs=FXCollections.observableArrayList();

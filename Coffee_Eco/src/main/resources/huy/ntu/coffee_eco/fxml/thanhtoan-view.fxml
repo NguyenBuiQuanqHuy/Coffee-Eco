@@ -9,6 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -38,10 +41,26 @@
       <AnchorPane minWidth="-Infinity" prefHeight="78.0" prefWidth="100.0" style="-fx-background-color: #33CC99;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="358.0" layoutY="27.0" />
-            <Label layoutX="336.0" layoutY="21.0" text="THANH TOÁN" textAlignment="CENTER" textFill="#ececec">
+            <Label layoutX="336.0" layoutY="21.0" text="THANH TOÁN" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="24.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Label fx:id="labelTenNV" layoutX="635.0" layoutY="-4.0" prefHeight="36.0" prefWidth="216.0" text="Tên người dùng" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -64,7 +83,7 @@
    <left>
       <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="117.0" layoutY="14.0" text="Chon thực đơn">
+            <Label layoutX="132.0" layoutY="14.0" text="Chọn đồ uống">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -117,7 +136,12 @@
                   <Font name="System Bold" size="12.0" />
                </font></TextField>
             <ImageView fx:id="imageSP" fitHeight="161.0" fitWidth="219.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="215.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleThemSP" prefHeight="36.0" prefWidth="97.0" text="Thêm">
+            <Button layoutX="221.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleThemSP" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: #33CC99;" text="Thêm" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="220.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleXoaSP" prefHeight="50.0" prefWidth="98.0" style="-fx-background-color: #33CC99;" text="Xóa" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -142,7 +166,7 @@
                   <TableColumn fx:id="colThanhTien" prefWidth="124.800048828125" text="Giá" />
                </columns>
             </TableView>
-            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleThanhToan" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
+            <Button layoutX="336.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleThanhToan" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #33CC99;" text="Thanh toán" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

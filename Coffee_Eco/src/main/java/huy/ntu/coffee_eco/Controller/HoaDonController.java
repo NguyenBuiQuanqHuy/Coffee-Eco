@@ -22,37 +22,31 @@ import java.text.DecimalFormat;
 
 public class HoaDonController {
     @FXML
-    TextField textFieldSoluong;
+    private TextField textFieldSoluong;
     @FXML
-    Label labelTenNV;
+    private Label labelTenNV;
     @FXML
-    ComboBox<LoaiHang> comboBoxLoai;
+    private ComboBox<LoaiHang> comboBoxLoai;
     @FXML
-    ComboBox<MenuItem> comboBoxMenu;
+    private ComboBox<MenuItem> comboBoxMenu;
     @FXML
-    Text textGia,textThanhTien;
+    private Text textGia,textThanhTien;
     @FXML
-    ImageView imageSP;
+    private ImageView imageSP;
     @FXML
-    TableView<ChiTietHoaDon> tableViewCTHD;
+    private TableView<ChiTietHoaDon> tableViewCTHD;
     @FXML
-    TableColumn<ChiTietHoaDon,Integer> colMenu;
+    private TableColumn<ChiTietHoaDon,Integer> colMenu;
     @FXML
-    TableColumn<ChiTietHoaDon,Integer> colSoLuong;
+    private TableColumn<ChiTietHoaDon,Integer> colSoLuong;
     @FXML
-    TableColumn<ChiTietHoaDon,Float> colGia,colThanhTien;
+    private TableColumn<ChiTietHoaDon,Float> colGia,colThanhTien;
 
-    HoaDonBLL hoaDonBLL=new HoaDonBLL();
+    private HoaDonBLL hoaDonBLL=new HoaDonBLL();
     private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
-    TaiKhoan currentUser = CurrentUser.getCurrentUser();
+    private TaiKhoan currentUser = CurrentUser.getCurrentUser();
     public void initialize() {
-
-        if (currentUser == null || currentUser.getNhanVien() == null) {
-            System.out.println("CurrentUser hoặc nhân viên chưa được khởi tạo!");
-        } else {
-            System.out.println("MaNV: " + currentUser.getNhanVien().getMaNV());
-        }
-
+        // Hiển thị tên nhân viên đăng nhập
         labelTenNV.setText(currentUser.getNhanVien().getTen());
 
         colMenu.setCellValueFactory(new PropertyValueFactory<>("maMenu"));
@@ -139,31 +133,63 @@ public class HoaDonController {
         });
     }
 
-
-
     public void handleThemSP() {
         MenuItem selectedMenuItem = comboBoxMenu.getValue();
-        LoaiHang selectedLoaiHang= comboBoxLoai.getValue();
+        LoaiHang selectedLoaiHang = comboBoxLoai.getValue();
+        // Kiểm tra nếu không có món hoặc loại món đã được chọn
+        if (selectedMenuItem == null || selectedLoaiHang == null) {
+            showAlert(Alert.AlertType.WARNING, "Thông báo", null, "Vui lòng chọn món và loại món!");
+            return;
+        }
+
         int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
         Float thanhtien = Float.parseFloat(textGia.getText().trim().replace(",", ""));
         Float dongia = selectedMenuItem.getGia();
-        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0,selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong,dongia, thanhtien);
+
+        // Kiểm tra nếu món đã có trong danh sách chi tiết hóa đơn
+        for (ChiTietHoaDon cthd : chiTietHoaDons) {
+            if (cthd.getMaMenu() == selectedMenuItem.getId()) {
+                showAlert(Alert.AlertType.WARNING, "Lỗi", null, "Món này đã có trong hóa đơn!");
+                return;
+            }
+        }
+
+        // Nếu chưa có món trong danh sách, thêm món mới vào hóa đơn
+        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0, selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong, dongia, thanhtien);
         chiTietHoaDons.add(chiTietHoaDon);
+        // Cập nhật lại bảng
         tableViewCTHD.refresh();
+        // Làm sạch các trường nhập liệu
         comboBoxLoai.getSelectionModel().clearSelection();
         comboBoxMenu.getSelectionModel().clearSelection();
         textFieldSoluong.clear();
         textGia.setText(" ");
         imageSP.setImage(null);
         textFieldSoluong.setDisable(true);
-
+        // Tính lại tổng tiền
         TongTien();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thêm món thành công");
-        alert.setHeaderText(null);
-        alert.setContentText("Món đã được thêm vào hóa đơn!");
+        // Hiển thị thông báo thành công
+        showAlert(Alert.AlertType.INFORMATION, "Thêm món thành công", null, "Món đã được thêm vào hóa đơn!");
     }
 
+
+    public void handleXoaSP() {
+        // Lấy dòng được chọn từ tableViewCTHD
+        ChiTietHoaDon selectedChiTietHoaDon = tableViewCTHD.getSelectionModel().getSelectedItem();
+        if (selectedChiTietHoaDon != null) {
+            // Xóa đối tượng khỏi danh sách
+            chiTietHoaDons.remove(selectedChiTietHoaDon);
+            // Cập nhật lại bảng
+            tableViewCTHD.refresh();
+            // Cập nhật lại tổng tiền
+            TongTien();
+            // Hiển thị thông báo thành công
+            showAlert(Alert.AlertType.INFORMATION, "Xóa món thành công", null, "Món đã được xóa khỏi hóa đơn!");
+        } else {
+            // Nếu không có dòng nào được chọn
+            showAlert(Alert.AlertType.WARNING, "Chưa chọn món", null, "Vui lòng chọn món để xóa!");
+        }
+    }
 
     public void minusSoluong(){
         int soLuong = Integer.parseInt(textFieldSoluong.getText().trim());
@@ -183,11 +209,7 @@ public class HoaDonController {
 
     public void handleThanhToan() {
         if (chiTietHoaDons.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Cảnh báo");
-            alert.setHeaderText("Chưa có sản phẩm nào trong hóa đơn");
-            alert.setContentText("Vui lòng thêm sản phẩm trước khi thanh toán.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Chưa có sản phẩm nào trong hóa đơn", "Vui lòng thêm sản phẩm trước khi thanh toán.");
             return;
         }
 
@@ -208,11 +230,7 @@ public class HoaDonController {
         chiTietHoaDons.clear();
         tableViewCTHD.refresh();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thanh toán thành công");
-        alert.setHeaderText(null);
-        alert.setContentText("Hóa đơn đã được tạo thành công!");
-        alert.showAndWait();
+        showAlert(Alert.AlertType.INFORMATION, "Thanh toán thành công", null, "Hóa đơn đã được tạo thành công!");
 
         textThanhTien.setText("");
         comboBoxLoai.getSelectionModel().clearSelection();
@@ -232,14 +250,9 @@ public class HoaDonController {
         currentStage.show();
     }
 
-
     public void QuanLyMenu() throws IOException {
         if (currentUser == null || !currentUser.getTenTK().equalsIgnoreCase("admin")) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Quyền truy cập bị từ chối");
-            alert.setHeaderText("Bạn không có quyền truy cập");
-            alert.setContentText("Chức năng này chỉ dành cho Admin.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Quyền truy cập bị từ chối", "Bạn không có quyền truy cập", "Chức năng này chỉ dành cho Admin.");
             return;
         }
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/menu-view.fxml"));
@@ -251,11 +264,7 @@ public class HoaDonController {
 
     public void QuanLyNhanVien() throws IOException {
         if (currentUser == null || !currentUser.getTenTK().equalsIgnoreCase("admin")) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Quyền truy cập bị từ chối");
-            alert.setHeaderText("Bạn không có quyền truy cập");
-            alert.setContentText("Chức năng này chỉ dành cho Admin.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Quyền truy cập bị từ chối", "Bạn không có quyền truy cập", "Chức năng này chỉ dành cho Admin.");
             return;
         }
         
@@ -312,6 +321,21 @@ public class HoaDonController {
             Stage stage = (Stage) labelTenNV.getScene().getWindow();
             stage.close();
         }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.show();
+    }
+    public void showAlertQuyen(Alert.AlertType alertType, String title, String header, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }

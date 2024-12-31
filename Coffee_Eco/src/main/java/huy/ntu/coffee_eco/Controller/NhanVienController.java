@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -66,6 +65,29 @@ public class NhanVienController {
 
         nhanVienBLL.loadNhanVienData(nhanVienList);
         tableNhanVien.setItems(nhanVienList);
+
+        tableNhanVien.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                hienThiThongTinNhanVien(newSelection);
+            }
+        });
+    }
+
+    // Hiển thị thông tin nhân viên được chọn
+    private void hienThiThongTinNhanVien(NhanVien nhanVien) {
+        txtHoten.setText(nhanVien.getTen());
+        txtDienthoai.setText(nhanVien.getDienthoai());
+        txtDiachi.setText(nhanVien.getDiachi());
+        txtLuong.setText(String.valueOf(nhanVien.getLuong()));
+        txtTaikhoan.setText(nhanVien.getTaikhoan());
+        txtMatkhau.setText(nhanVien.getMatkhau());
+
+        // Gán giới tính
+        if ("Nam".equalsIgnoreCase(nhanVien.getGioitinh())) {
+            RadiobuttonNam.setSelected(true);
+        } else if ("Nữ".equalsIgnoreCase(nhanVien.getGioitinh())) {
+            RadiobuttonNu.setSelected(true);
+        }
     }
 
     public void handleThemNV() {

@@ -18,13 +18,13 @@ import java.io.IOException;
 public class TaiKhoanController {
 
     @FXML
-    TextField textFieldTK;
+    private TextField textFieldTK;
     @FXML
-    PasswordField matKhau;
+    private PasswordField matKhau;
     @FXML
-    CheckBox checkBoxMK;
+    private CheckBox checkBoxMK;
     @FXML
-    TextField textFieldMK;
+    private TextField textFieldMK;
 
     TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
 

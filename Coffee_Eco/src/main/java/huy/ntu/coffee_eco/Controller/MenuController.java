@@ -15,8 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,19 +25,19 @@ import java.text.DecimalFormat;
 public class MenuController {
 
     @FXML
-    ComboBox<LoaiHang> comboBoxLoai;
+    private ComboBox<LoaiHang> comboBoxLoai;
     @FXML
-    TextField textFieldName,textFieldGia;
+    private TextField textFieldName,textFieldGia;
     @FXML
-    TableView<MenuItem> tableViewMenu;
+    private TableView<MenuItem> tableViewMenu;
     @FXML
-    TableColumn<MenuItem,Integer> colLoaiSP;
+    private TableColumn<MenuItem,Integer> colLoaiSP;
     @FXML
-    TableColumn<MenuItem,Float> colGiaSP;
+    private TableColumn<MenuItem,Float> colGiaSP;
     @FXML
-    TableColumn<MenuItem,String> colTenSP;
+    private TableColumn<MenuItem,String> colTenSP;
     @FXML
-    ImageView imageSanPham;
+    private ImageView imageSanPham;
     String selectedImagePath = null;
     String savedImagePath = null;
 
@@ -89,6 +87,34 @@ public class MenuController {
 
         menuBLL.loadLoaiHang(loaiHangList);
         comboBoxLoai.setItems(loaiHangList);
+
+
+        // Hiển thị thông tin của món được chọn
+        tableViewMenu.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                textFieldName.setText(newSelection.getTenHang());
+                textFieldGia.setText(String.valueOf(newSelection.getGia()));
+
+                // Tìm và chọn đúng loại hàng trong ComboBox
+                LoaiHang selectedLoai = loaiHangList.stream()
+                        .filter(loai -> String.valueOf(loai.getMaloaihang()).equals(String.valueOf(newSelection.getLoaiHang())))
+                        .findFirst()
+                        .orElse(null);
+                comboBoxLoai.setValue(selectedLoai);
+
+                // Hiển thị ảnh nếu có
+                if (newSelection.getHinhAnh() != null && !newSelection.getHinhAnh().isEmpty()) {
+                    selectedImagePath = "/huy/ntu/coffee_eco/images/" + newSelection.getHinhAnh();
+                        Image image = new Image(getClass().getResource(selectedImagePath).toExternalForm());
+                        imageSanPham.setImage(image);
+
+                } else {
+                    selectedImagePath = null;
+                    imageSanPham.setImage(null);
+                }
+
+            }
+        });
     }
 
     public void handleChonAnh(){
