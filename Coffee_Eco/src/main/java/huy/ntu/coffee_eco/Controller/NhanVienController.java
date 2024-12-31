@@ -80,9 +80,6 @@ public class NhanVienController {
         txtDiachi.setText(nhanVien.getDiachi());
         txtLuong.setText(String.valueOf(nhanVien.getLuong()));
         txtTaikhoan.setText(nhanVien.getTaikhoan());
-        txtMatkhau.setText(nhanVien.getMatkhau());
-
-        // Gán giới tính
         if ("Nam".equalsIgnoreCase(nhanVien.getGioitinh())) {
             RadiobuttonNam.setSelected(true);
         } else if ("Nữ".equalsIgnoreCase(nhanVien.getGioitinh())) {
@@ -114,7 +111,6 @@ public class NhanVienController {
         String tenTK = txtTaikhoan.getText().trim().toLowerCase();
         String matkhau = txtMatkhau.getText().trim().toLowerCase();
         Float luong;
-
 
         if (ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
@@ -162,7 +158,6 @@ public class NhanVienController {
             ToggleGroupGioiTinh.getSelectedToggle().setSelected(false);
     }
 
-
     public void handleSuaNV() {
         NhanVien selectedNhanVien = tableNhanVien.getSelectionModel().getSelectedItem();
         if (selectedNhanVien == null) {
@@ -170,14 +165,12 @@ public class NhanVienController {
             alert.show();
             return;
         }
-
         String ten = txtHoten.getText().trim();
         String diachi = txtDiachi.getText().trim();
         String dienthoai = txtDienthoai.getText().trim();
         String tenTK = txtTaikhoan.getText().trim();
         String matkhau = txtMatkhau.getText().trim();
         Float luong;
-
         if (ten.isEmpty() || diachi.isEmpty() || dienthoai.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vui lòng điền đầy đủ thông tin!", ButtonType.OK);
             alert.show();
@@ -235,7 +228,6 @@ public class NhanVienController {
         }
     }
 
-
     public void handleXoaNV() {
         NhanVien selectedNhanVien = tableNhanVien.getSelectionModel().getSelectedItem();
         if (selectedNhanVien == null) {
@@ -243,10 +235,8 @@ public class NhanVienController {
             alert.show();
             return;
         }
-
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có chắc chắn muốn xóa nhân viên này?", ButtonType.YES, ButtonType.NO);
         confirmAlert.showAndWait();
-
         if (confirmAlert.getResult() == ButtonType.YES) {
                 nhanVienBLL.xoaNV(selectedNhanVien.getMaNV());
                 nhanVienList.remove(selectedNhanVien);
