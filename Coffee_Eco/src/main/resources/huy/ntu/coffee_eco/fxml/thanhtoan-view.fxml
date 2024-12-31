@@ -18,7 +18,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="huy.ntu.coffee_eco.Controller.HoaDonController">
    <bottom>
-      <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="94.0" prefWidth="852.0" style="-fx-background-color: #d4fae7;" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="33.0" layoutY="11.0" mnemonicParsing="false" onAction="#ThongKe" prefHeight="66.0" prefWidth="227.0" style="-fx-background-color: #33CC99; -fx-border-color: #AFAFAF;" text="Thống Kê" textFill="WHITE">
                <font>
@@ -81,14 +81,14 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="355.0" prefWidth="338.0" style="-fx-background-color: #d4fae7;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="132.0" layoutY="14.0" text="Chọn đồ uống">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="319.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="10.0" layoutY="36.0" stroke="#00000035" strokeType="INSIDE" width="322.0" />
             <Label layoutX="22.0" layoutY="50.0" text="Loại: ">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -150,14 +150,14 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: D0FAFF;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="337.0" prefWidth="294.0" style="-fx-background-color: #d4fae7;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="200.0" layoutY="14.0" text="Chi tiết hóa đơn">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4fae7" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0faff" height="319.0" layoutX="2.0" layoutY="36.0" stroke="#00000038" strokeType="INSIDE" width="502.0" />
             <TableView fx:id="tableViewCTHD" layoutX="2.0" layoutY="36.0" prefHeight="243.0" prefWidth="500.0">
                <columns>
                   <TableColumn fx:id="colMenu" prefWidth="177.60003662109375" text="Tên nước uống" />

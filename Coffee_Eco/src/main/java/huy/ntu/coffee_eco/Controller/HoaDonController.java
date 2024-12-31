@@ -16,11 +16,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
-
 
 public class HoaDonController {
     @FXML
@@ -48,9 +46,7 @@ public class HoaDonController {
     private ObservableList<ChiTietHoaDon> chiTietHoaDons = FXCollections.observableArrayList();
     private TaiKhoan currentUser = CurrentUser.getCurrentUser();
     public void initialize() {
-        // Hiển thị tên nhân viên đăng nhập
         labelTenNV.setText(currentUser.getNhanVien().getTen());
-
         colMenu.setCellValueFactory(new PropertyValueFactory<>("maMenu"));
         colMenu.setCellFactory(col -> new TableCell<ChiTietHoaDon, Integer>() {
             @Override
@@ -138,7 +134,6 @@ public class HoaDonController {
     public void handleThemSP() {
         MenuItem selectedMenuItem = comboBoxMenu.getValue();
         LoaiHang selectedLoaiHang = comboBoxLoai.getValue();
-        // Kiểm tra nếu không có món hoặc loại món đã được chọn
         if (selectedMenuItem == null || selectedLoaiHang == null) {
             showAlert(Alert.AlertType.WARNING, "Thông báo", null, "Vui lòng chọn món và loại món!");
             return;
@@ -148,7 +143,6 @@ public class HoaDonController {
         Float thanhtien = Float.parseFloat(textGia.getText().trim().replace(",", ""));
         Float dongia = selectedMenuItem.getGia();
 
-        // Kiểm tra nếu món đã có trong danh sách chi tiết hóa đơn
         for (ChiTietHoaDon cthd : chiTietHoaDons) {
             if (cthd.getMaMenu() == selectedMenuItem.getId()) {
                 showAlert(Alert.AlertType.WARNING, "Lỗi", null, "Món này đã có trong hóa đơn!");
@@ -156,39 +150,28 @@ public class HoaDonController {
             }
         }
 
-        // Nếu chưa có món trong danh sách, thêm món mới vào hóa đơn
         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(0, selectedLoaiHang.getMaloaihang(), selectedMenuItem.getId(), soLuong, dongia, thanhtien);
         chiTietHoaDons.add(chiTietHoaDon);
-        // Cập nhật lại bảng
         tableViewCTHD.refresh();
-        // Làm sạch các trường nhập liệu
         comboBoxLoai.getSelectionModel().clearSelection();
         comboBoxMenu.getSelectionModel().clearSelection();
         textFieldSoluong.clear();
         textGia.setText(" ");
         imageSP.setImage(null);
         textFieldSoluong.setDisable(true);
-        // Tính lại tổng tiền
         TongTien();
-        // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Thêm món thành công", null, "Món đã được thêm vào hóa đơn!");
     }
 
 
     public void handleXoaSP() {
-        // Lấy dòng được chọn từ tableViewCTHD
         ChiTietHoaDon selectedChiTietHoaDon = tableViewCTHD.getSelectionModel().getSelectedItem();
         if (selectedChiTietHoaDon != null) {
-            // Xóa đối tượng khỏi danh sách
             chiTietHoaDons.remove(selectedChiTietHoaDon);
-            // Cập nhật lại bảng
             tableViewCTHD.refresh();
-            // Cập nhật lại tổng tiền
             TongTien();
-            // Hiển thị thông báo thành công
             showAlert(Alert.AlertType.INFORMATION, "Xóa món thành công", null, "Món đã được xóa khỏi hóa đơn!");
         } else {
-            // Nếu không có dòng nào được chọn
             showAlert(Alert.AlertType.WARNING, "Chưa chọn món", null, "Vui lòng chọn món để xóa!");
         }
     }
