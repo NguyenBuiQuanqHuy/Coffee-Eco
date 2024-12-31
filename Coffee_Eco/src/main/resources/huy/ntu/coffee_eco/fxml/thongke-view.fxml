@@ -39,13 +39,13 @@
                   <TableColumn fx:id="colThanhTien" prefWidth="120.0" text="Thành tiền" />
               </columns>
             </TableView>
-            <DatePicker fx:id="dpNgayTao" layoutX="7.0" layoutY="10.0" prefHeight="26.0" prefWidth="178.0" promptText="Nhập ngày tạo hóa đơn" />
-            <Button layoutX="199.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleThongKe" prefHeight="30.0" prefWidth="76.0" text="Thống kê">
+            <DatePicker fx:id="dpNgayTao" layoutX="7.0" layoutY="10.0" prefHeight="26.0" prefWidth="233.0" promptText="Nhập ngày tạo hóa đơn" />
+            <Button layoutX="258.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleThongKe" prefHeight="30.0" prefWidth="76.0" text="Thống kê">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="288.0" layoutY="8.0" mnemonicParsing="false" onAction="#Thoat" prefHeight="30.0" prefWidth="76.0" text="Thoát">
+            <Button layoutX="346.0" layoutY="7.0" mnemonicParsing="false" onAction="#Thoat" prefHeight="30.0" prefWidth="76.0" text="Thoát">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
