@@ -29,7 +29,6 @@ public class NhanVienDAL {
             DSUntils.CloseConnect(conn);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-
         }
     }
 
@@ -39,7 +38,6 @@ public class NhanVienDAL {
             String query = "SELECT * FROM nhanvien";
             Statement statement=conn.createStatement();
             ResultSet resultSet=statement.executeQuery(query);
-
             while (resultSet.next()){
                 int manv = resultSet.getInt("MaNV");
                 String ten = resultSet.getString("TenNV");

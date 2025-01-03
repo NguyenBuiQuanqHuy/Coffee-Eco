@@ -17,7 +17,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class TaiKhoanController {
-
     @FXML
     private TextField textFieldTK;
     @FXML
@@ -67,15 +66,12 @@ public class TaiKhoanController {
     }
 
     private void DangNhapThanhCong() throws IOException {
-        // Tạo màn hình mới
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("fxml/thanhtoan-view.fxml"));
         Scene thanhToanScene = new Scene(loader.load());
 
-        // Lấy stage hiện tại và đóng nó
         Stage currentStage = (Stage) textFieldTK.getScene().getWindow();
-        currentStage.close();  // Đóng màn hình hiện tại
+        currentStage.close();
 
-        // Hiển thị màn hình mới
         Stage newStage = new Stage();
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.setScene(thanhToanScene);

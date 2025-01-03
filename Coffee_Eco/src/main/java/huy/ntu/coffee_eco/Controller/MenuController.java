@@ -48,10 +48,10 @@ public class MenuController {
     public void initialize() {
         menuList = FXCollections.observableArrayList();
         loaiHangList=FXCollections.observableArrayList();
-        // Thiết lập giá trị cho các cột trong TableView
+
         colTenSP.setCellValueFactory(new PropertyValueFactory<>("tenHang"));
         colLoaiSP.setCellValueFactory(new PropertyValueFactory<>("loaiHang"));
-        // Lấy tên loại hàng từ mã loại hàng
+
         colLoaiSP.setCellFactory(col -> new TableCell<MenuItem, Integer>() {
             @Override
             protected void updateItem(Integer item, boolean empty) {
@@ -67,7 +67,6 @@ public class MenuController {
         });
 
         colGiaSP.setCellValueFactory(new PropertyValueFactory<>("gia"));
-        // Định dạng giá để có dạng = 00.000.000
         colGiaSP.setCellFactory(column -> new TableCell<>() {
             private final DecimalFormat format = new DecimalFormat("#,###.###");
 
@@ -87,20 +86,17 @@ public class MenuController {
 
         menuBLL.loadLoaiHang(loaiHangList);
         comboBoxLoai.setItems(loaiHangList);
-        // Hiển thị thông tin của món được chọn
         tableViewMenu.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 textFieldName.setText(newSelection.getTenHang());
                 textFieldGia.setText(String.valueOf(newSelection.getGia()));
 
-                // Tìm và chọn đúng loại hàng trong ComboBox
                 LoaiHang selectedLoai = loaiHangList.stream()
                         .filter(loai -> String.valueOf(loai.getMaloaihang()).equals(String.valueOf(newSelection.getLoaiHang())))
                         .findFirst()
                         .orElse(null);
                 comboBoxLoai.setValue(selectedLoai);
 
-                // Hiển thị ảnh nếu có
                 if (newSelection.getHinhAnh() != null && !newSelection.getHinhAnh().isEmpty()) {
                     selectedImagePath = "/huy/ntu/coffee_eco/images/" + newSelection.getHinhAnh();
                         Image image = new Image(getClass().getResource(selectedImagePath).toExternalForm());
@@ -116,12 +112,10 @@ public class MenuController {
     }
 
     public void handleChonAnh(){
-        // Chọn ảnh từ thiết bị
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Hình ảnh", "*.png", "*.jpg", "*.jpeg")
         );
-        // Lưu ảnh vào thư mục
         File file = fileChooser.showOpenDialog(null);
             selectedImagePath = file.getAbsolutePath();
             try {
@@ -138,7 +132,6 @@ public class MenuController {
             }
     }
 
-    // Thêm món vào menu
     public void handleThemMenu(){
             String tenHang = textFieldName.getText().trim();
             String giaStr = textFieldGia.getText().trim();
@@ -202,7 +195,7 @@ public class MenuController {
         imageSanPham.setImage(null);
         savedImagePath = null;
     }
-    // Xóa món trong menu
+
     public void handleXoaMenu() {
         MenuItem selectedItem = tableViewMenu.getSelectionModel().getSelectedItem();
         if (selectedItem == null) {
@@ -223,7 +216,6 @@ public class MenuController {
         }
     }
 
-    // Tìm kiếm món
     public void handleTimKiem(){
         String tenMenu = textFieldTimKiem.getText().toString().trim().toLowerCase();
         if (tenMenu.isEmpty()) {

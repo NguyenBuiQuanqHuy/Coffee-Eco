@@ -23,7 +23,6 @@ public class TaiKhoanDAL {
             if (resultSet.next()) {
                 int maNV = resultSet.getInt("MaNV");
                 NhanVien nhanVien = getNhanVienByMaNV(maNV);
-
                 taiKhoan.setNhanVien(nhanVien);
                 taiKhoan.getNhanVien().setMaNV(maNV);
                 DSUntils.CloseConnect(conn);
@@ -46,7 +45,6 @@ public class TaiKhoanDAL {
         String query = "SELECT * FROM nhanvien WHERE MaNV = ?";
         try (Connection conn = DSUntils.DBConnect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-
             stmt.setInt(1, maNV);
             ResultSet rs = stmt.executeQuery();
 

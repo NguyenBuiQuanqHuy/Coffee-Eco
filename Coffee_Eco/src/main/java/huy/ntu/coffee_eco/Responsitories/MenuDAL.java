@@ -86,7 +86,6 @@ public class MenuDAL {
                 int generatedId = generatedKeys.getInt(1);
                 menuItem.setId(generatedId);
             }
-
             DSUntils.CloseConnect(conn);
         } catch (Exception e) {
             e.printStackTrace();

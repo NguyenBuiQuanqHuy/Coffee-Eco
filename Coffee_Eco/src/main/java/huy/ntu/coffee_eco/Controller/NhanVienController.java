@@ -73,7 +73,6 @@ public class NhanVienController {
         });
     }
 
-    // Hiển thị thông tin nhân viên được chọn
     private void hienThiThongTinNhanVien(NhanVien nhanVien) {
         txtHoten.setText(nhanVien.getTen());
         txtDienthoai.setText(nhanVien.getDienthoai());
@@ -89,7 +88,6 @@ public class NhanVienController {
 
     public void handleTimKiem(){
         String tenNV = textFieldTimKiem.getText().toString().trim();
-
         if (tenNV.isEmpty()) {
             tableNhanVien.setItems(nhanVienList);
         } else {
